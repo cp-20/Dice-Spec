@@ -58,7 +58,7 @@ module.exports = {
   overrides: [
     // 一部ルールを除外する
     {
-      files: ['src/pages/**/*.{js,ts,jsx,tsx}'], // pagesのdefault exportは仕方ないので除外
+      files: ['src/{app,pages}/**/*.{js,ts,jsx,tsx}'], // app,pagesのdefault exportは仕方ないので除外
       rules: { 'import/no-default-export': 'off' },
     },
     {
