@@ -1,0 +1,12 @@
+# generated files
+/.next
+/out
+/cache
+/dist
+
+# node modules
+/node_modules
+
+
+# other files
+/public
