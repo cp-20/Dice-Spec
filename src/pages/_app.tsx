@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 
 import type { GoogleTagManagerId } from '@/components/functional/GoogleTagManager';
 import { GoogleTagManager, googleTagManagerId } from '@/components/functional/GoogleTagManager';
+import { customTheme } from '@/features/theme/theme';
 
 nprogress.configure({ showSpinner: false, speed: 400, minimum: 0.25 });
 
@@ -24,7 +25,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       {googleTagManagerId && <GoogleTagManager googleTagManagerId={googleTagManagerId as GoogleTagManagerId} />}
-      <ChakraProvider>
+      <ChakraProvider theme={customTheme}>
         <Component {...pageProps}></Component>
       </ChakraProvider>
     </>
