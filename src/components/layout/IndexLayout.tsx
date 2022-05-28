@@ -6,9 +6,11 @@ import { Header } from '@/components/layout/Header';
 export const IndexLayout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <>
-      <Header />
-      {children}
-      <Footer />
+      <div className="flex h-screen flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </div>
     </>
   );
 };
