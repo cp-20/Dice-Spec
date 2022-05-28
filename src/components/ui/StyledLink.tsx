@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import Link from 'next/link';
 import type { FC, ReactNode } from 'react';
-import { FiExternalLink } from 'react-icons/fi';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 import { cx } from '@/features/utils/cx';
 
@@ -27,7 +27,7 @@ export const StyledLink: FC<StyledLinkProps> = ({ href, className, children, ico
           className={cx(className, 'inline-flex items-center space-x-2')}
         >
           <span>{children}</span>
-          {icon !== 'none' && isExternal && <FiExternalLink />}
+          {icon !== 'none' && isExternal && <FaExternalLinkAlt />}
         </a>
       </Link>
     </>
