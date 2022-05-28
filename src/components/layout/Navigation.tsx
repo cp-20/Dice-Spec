@@ -17,7 +17,7 @@ export const Navigation: FC = () => {
 
   return (
     <>
-      <div className="flex h-full flex-col border-r-2 border-gray-200">
+      <div className="flex h-full flex-col">
         <NavigationLink href="/expect" icon={<FaSearch className="inline" />}>
           {t('navigation.expect')}
         </NavigationLink>

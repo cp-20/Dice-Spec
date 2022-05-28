@@ -10,7 +10,7 @@ export const IndexLayout: FC<{ children: ReactNode }> = ({ children }) => {
       <div className="flex h-screen flex-col">
         <Header />
         <main className="flex flex-1">
-          <div className="w-60">
+          <div className="w-60 border-r-2 border-gray-100 dark:border-gray-700/50">
             <Navigation />
           </div>
           <div className="flex-1 p-2">{children}</div>
