@@ -1,6 +1,7 @@
 import 'nprogress/nprogress.css';
 import '@/styles/tailwind.css';
 
+import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import nprogress from 'nprogress';
@@ -23,7 +24,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       {googleTagManagerId && <GoogleTagManager googleTagManagerId={googleTagManagerId as GoogleTagManagerId} />}
-      <Component {...pageProps}></Component>
+      <ChakraProvider>
+        <Component {...pageProps}></Component>
+      </ChakraProvider>
     </>
   );
 };
