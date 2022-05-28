@@ -8,4 +8,4 @@ renovate.json
 src/locales/**/
 cache/*
 dist/*
-src/parser/*
+parser/*
