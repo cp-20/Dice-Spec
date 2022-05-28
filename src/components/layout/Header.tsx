@@ -18,7 +18,7 @@ export const Header: FC = () => {
 
   return (
     <>
-      <Box shadow="sm">
+      <Box shadow="sm" _dark={{ shadow: 'dark-lg' }}>
         <header className="flex py-2 px-4">
           <StyledLink href="/">{t('header.backToTop')}</StyledLink>
 
