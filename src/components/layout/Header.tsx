@@ -1,4 +1,4 @@
-import { IconButton, useColorMode } from '@chakra-ui/react';
+import { Box, IconButton, useColorMode } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
 import { useEffect } from 'react';
@@ -17,14 +17,21 @@ export const Header: FC = () => {
 
   return (
     <>
-      <header className="h-8">
-        <StyledLink href="/">{t('header.backToTop')}</StyledLink>
-        <IconButton
-          icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
-          onClick={() => toggleColorMode()}
-          aria-label={t('header.toggleColorMode')}
-        />
-      </header>
+      <Box shadow="sm">
+        <header className="flex py-2 px-4">
+          <StyledLink href="/">{t('header.backToTop')}</StyledLink>
+
+          <div className="ml-auto">
+            {/* toggleColorMode Button */}
+            <IconButton
+              size="sm"
+              icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
+              onClick={() => toggleColorMode()}
+              aria-label={t('header.toggleColorMode')}
+            />
+          </div>
+        </header>
+      </Box>
     </>
   );
 };
