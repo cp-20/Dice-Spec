@@ -6,10 +6,8 @@ export const Footer: FC = () => {
 
   return (
     <>
-      <footer className="bg-gray-500/20 py-2 px-4">
-        <div>
-          <p>{t('copyright')}</p>
-        </div>
+      <footer className="flex justify-center bg-gray-500/20 py-2 px-4">
+        <p className="text-gray-700 dark:text-gray-400">{t('copyright')}</p>
       </footer>
     </>
   );
