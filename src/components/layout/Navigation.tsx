@@ -1,7 +1,8 @@
 import { cx } from '@chakra-ui/utils';
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
-import { FaDice, FaSearch } from 'react-icons/fa';
+import { BsDice5 } from 'react-icons/bs';
+import { FaSearch } from 'react-icons/fa';
 
 import type { StyledLinkProps } from '@/components/ui/StyledLink';
 import { StyledLink } from '@/components/ui/StyledLink';
@@ -21,7 +22,7 @@ export const Navigation: FC = () => {
         <NavigationLink href="/expect" icon={<FaSearch className="inline" />}>
           {t('navigation.expect')}
         </NavigationLink>
-        <NavigationLink href="/dice" icon={<FaDice className="inline" />}>
+        <NavigationLink href="/dice" icon={<BsDice5 className="inline" />}>
           {t('navigation.dice')}
         </NavigationLink>
       </div>
