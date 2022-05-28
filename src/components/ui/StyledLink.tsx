@@ -5,7 +5,7 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 
 import { cx } from '@/features/utils/cx';
 
-export type iconStyle = 'none';
+export type iconStyle = 'none' | ReactNode;
 
 export type StyledLinkProps = {
   href: string;
@@ -26,8 +26,9 @@ export const StyledLink: FC<StyledLinkProps> = ({ href, className, children, ico
           target={isExternal ? '_blank' : ''}
           className={cx(className, 'inline-flex items-center space-x-2')}
         >
+          {icon !== 'none' && icon}
           <span>{children}</span>
-          {icon !== 'none' && isExternal && <FaExternalLinkAlt />}
+          {!icon && isExternal && <FaExternalLinkAlt />}
         </a>
       </Link>
     </>
