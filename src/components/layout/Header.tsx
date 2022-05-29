@@ -29,9 +29,13 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
 
           <div className="ml-auto flex items-center space-x-4">
             {/* Developer's Twitter */}
-            <StyledLink href="https://twitter.com/__cp20__" icon="none">
-              <FaTwitter title={t('footer.twitter')} />
-            </StyledLink>
+            <IconButton
+              size="sm"
+              icon={<FaTwitter title={t('header.twitter')} />}
+              onClick={() => window.open('https://twitter.com/__cp20__', '_blank')}
+              aria-label={t('header.twitter')}
+              title={t('header.twitter')}
+            />
 
             {/* toggleColorMode Button */}
             <IconButton
@@ -39,6 +43,7 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
               icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
               onClick={() => toggleColorMode()}
               aria-label={t('header.toggleColorMode')}
+              title={t('header.toggleColorMode')}
             />
 
             {/* navigation menu */}
