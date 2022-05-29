@@ -1,15 +1,20 @@
-import { Box, IconButton, useColorMode } from '@chakra-ui/react';
+import { Box, IconButton, useColorMode, useDisclosure } from '@chakra-ui/react';
+import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
+import { useRef } from 'react';
 import { useEffect } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
+import { FaBars, FaMoon, FaSun } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 
+import { Navigation } from '@/components/layout/Navigation';
 import { StyledLink } from '@/components/ui/StyledLink';
 
-export const Header: FC = () => {
+export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
   const [t] = useTranslation('common');
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.classList.add(colorMode);
@@ -35,6 +40,31 @@ export const Header: FC = () => {
               onClick={() => toggleColorMode()}
               aria-label={t('header.toggleColorMode')}
             />
+
+            {/* navigation menu */}
+            {isDesktop || (
+              <>
+                <IconButton
+                  size="sm"
+                  icon={<FaBars />}
+                  aria-label={t('header.navigation')}
+                  title={t('header.navigation')}
+                  ref={btnRef}
+                  onClick={onOpen}
+                />
+                <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
+                  <DrawerOverlay />
+                  <DrawerContent>
+                    <DrawerCloseButton />
+                    <DrawerHeader>{t('header.navigation')}</DrawerHeader>
+
+                    <DrawerBody>
+                      <Navigation />
+                    </DrawerBody>
+                  </DrawerContent>
+                </Drawer>
+              </>
+            )}
           </div>
         </header>
       </Box>
