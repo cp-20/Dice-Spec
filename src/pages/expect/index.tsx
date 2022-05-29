@@ -43,7 +43,7 @@ const Home: NextPage = () => {
             <ExpectResult result={result} />
           </div>
 
-          <div className="my-8 border-l-4 pl-2 text-gray-500">
+          <div className="my-8 border-l-4 pl-2 text-gray-500 dark:text-gray-400">
             <Heading as="h2" size="md" className="py-2">
               {t('inputExample')}
             </Heading>
