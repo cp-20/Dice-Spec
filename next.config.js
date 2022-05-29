@@ -8,6 +8,17 @@ const localeSubpaths = {};
 
 /** @type {import('next').NextConfig} */
 module.exports = withBundleAnalyzer({
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.pegjs/,
+      use: [
+        {
+          loader: 'raw-loader',
+        },
+      ],
+    });
+    return config;
+  },
   i18n,
   publicRuntimeConfig: {
     localeSubpaths,
