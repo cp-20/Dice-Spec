@@ -1,19 +1,14 @@
-import { Button, Checkbox, FormControl, FormErrorMessage, Heading, Input } from '@chakra-ui/react';
+import { Checkbox, Heading } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import type { FC, ReactNode } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 import { useExpectedValue } from '@/components/functional/useExpectedValue';
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { ExpectResult } from '@/components/model/ExpectResult';
-
-const H2: FC<{ children: ReactNode }> = ({ children }) => (
-  <Heading as="h2" size="lg" className="my-4 border-b-2 border-gray-200 pb-1">
-    {children}
-  </Heading>
-);
+import { H1, H2 } from '@/components/ui/Heading';
+import { Inputbox } from '@/components/ui/Inputbox';
 
 const Home: NextPage = () => {
   const [t] = useTranslation('expect');
@@ -23,27 +18,26 @@ const Home: NextPage = () => {
     <>
       <IndexLayout>
         <div className="px-4">
-          <Heading as="h1" className="inline-flex items-center space-x-2 py-4">
+          <H1>
             <FaSearch className="inline" />
             <span>{t('title')}</span>
-          </Heading>
+          </H1>
 
           <p className="mb-8">{t('description')}</p>
 
-          <form onSubmit={onSubmit}>
-            <FormControl isInvalid={result ? result.error : false}>
-              <div className="flex space-x-2">
-                <Input size="lg" placeholder={t('form.placeholder')} value={inputVal} onChange={onInputChange} />
-                <Button type="submit" size="lg" colorScheme="blue">
-                  {t('form.submit')}
-                </Button>
-              </div>
-              <FormErrorMessage>{t('form.helptext.error')}</FormErrorMessage>
-            </FormControl>
+          <Inputbox
+            onSubmit={onSubmit}
+            onChange={onInputChange}
+            inputVal={inputVal}
+            isInvalid={result ? result.error : false}
+            placeholder={t('form.placeholder')}
+            submitText={t('form.submit')}
+            errorText={t('form.helptext.error')}
+          >
             <Checkbox isChecked={isAutoCalc} onChange={onAutoCalcChange} className="my-2">
               {t('form.autoCalc')}
             </Checkbox>
-          </form>
+          </Inputbox>
 
           <div className="my-8">
             <H2>{t('result.title')}</H2>
