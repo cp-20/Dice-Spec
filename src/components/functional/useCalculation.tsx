@@ -26,9 +26,9 @@ const calculation = <T,>(input: string, parser: parser<T>): calcResult<T> => {
 
 let timeout: NodeJS.Timeout | null = null;
 
-export const useCalculation = <T,>(parser: parser<T>) => {
+export const useCalculation = <T,>(parser: parser<T>, defaultAutoCalc = true) => {
   const [inputVal, setInputVal] = useState('');
-  const [isAutoCalc, setIsAutoCalc] = useState(true);
+  const [isAutoCalc, setIsAutoCalc] = useState(defaultAutoCalc);
   const [result, setResult] = useState<calcResult<T>>(null);
 
   const onSubmit: FormEventHandler = (e) => {
