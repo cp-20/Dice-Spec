@@ -11,5 +11,7 @@
   "navigation": {
     "expect": "ダイス予測",
     "dice": "ダイスロール"
-  }
+  },
+
+  "inputExample": "入力例"
 }
