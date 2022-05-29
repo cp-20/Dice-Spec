@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 const Home: NextPage = () => {
   return (
     <>
-      <div>hello world</div>
+      <div>landing page</div>
     </>
   );
 };
@@ -15,7 +15,7 @@ type contextType = {
 export const getStaticProps = async (context: contextType) => {
   return {
     props: {
-      ...(await serverSideTranslations(context.locale, [])),
+      ...(await serverSideTranslations(context.locale, ['common'])),
     },
   };
 };
