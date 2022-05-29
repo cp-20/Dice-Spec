@@ -26,7 +26,7 @@ const calculation = <T,>(input: string, parser: parser<T>): calcResult<T> => {
 
 let timeout: NodeJS.Timeout | null = null;
 
-export const useExpectedValue = <T,>(parser: parser<T>) => {
+export const useCalculation = <T,>(parser: parser<T>) => {
   const [inputVal, setInputVal] = useState('');
   const [isAutoCalc, setIsAutoCalc] = useState(true);
   const [result, setResult] = useState<calcResult<T>>(null);

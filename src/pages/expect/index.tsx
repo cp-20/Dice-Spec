@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FaSearch } from 'react-icons/fa';
 
-import { useExpectedValue } from '@/components/functional/useCalculation';
+import { useCalculation } from '@/components/functional/useCalculation';
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { ExpectResult } from '@/components/model/ExpectResult';
 import { InputExamples } from '@/components/model/InputExamples';
@@ -14,8 +14,7 @@ import { calcExpectedValue } from '@/features/parser/expect';
 
 const Home: NextPage = () => {
   const [t] = useTranslation('expect');
-  const { inputVal, onInputChange, isAutoCalc, onAutoCalcChange, onSubmit, result } =
-    useExpectedValue(calcExpectedValue);
+  const { inputVal, onInputChange, isAutoCalc, onAutoCalcChange, onSubmit, result } = useCalculation(calcExpectedValue);
 
   return (
     <>
