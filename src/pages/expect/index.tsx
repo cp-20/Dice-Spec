@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { FC, ReactNode } from 'react';
+import { FaSearch } from 'react-icons/fa';
 
 import { useExpectedValue } from '@/components/functional/useExpectedValue';
 import { IndexLayout } from '@/components/layout/IndexLayout';
@@ -22,8 +23,9 @@ const Home: NextPage = () => {
     <>
       <IndexLayout>
         <div className="px-4">
-          <Heading as="h1" className="py-4">
-            {t('title')}
+          <Heading as="h1" className="inline-flex items-center space-x-2 py-4">
+            <FaSearch className="inline" />
+            <span>{t('title')}</span>
           </Heading>
 
           <p className="mb-8">{t('description')}</p>
@@ -32,7 +34,7 @@ const Home: NextPage = () => {
             <FormControl isInvalid={result ? result.error : false}>
               <div className="flex space-x-2">
                 <Input size="lg" placeholder={t('form.placeholder')} value={inputVal} onChange={onInputChange} />
-                <Button type="submit" size="lg" colorScheme="teal">
+                <Button type="submit" size="lg" colorScheme="blue">
                   {t('form.submit')}
                 </Button>
               </div>
