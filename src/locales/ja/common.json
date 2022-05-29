@@ -1,3 +1,15 @@
 {
-  
+  "copyright": "© 2022 cp20",
+
+  "header": {
+    "backToTop": "トップに戻る",
+    "twitter": "開発者のついったー",
+    "toggleColorMode": "カラーモードを切り替える",
+    "navigation": "コンテンツ"
+  },
+
+  "navigation": {
+    "expect": "ダイス予測",
+    "dice": "ダイスロール"
+  }
 }
