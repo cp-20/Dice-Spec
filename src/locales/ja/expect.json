@@ -1,3 +1,21 @@
 {
-  
+  "title": "ダイス予測",
+  "description": "ダイスの期待値を算出するツールです。",
+  "form": {
+    "placeholder": "計算式を入力してください",
+    "submit": "計算",
+    "helptext": {
+      "error": "計算式の解析に失敗しました。"
+    },
+    "autoCalc": "変更時に自動で計算"
+  },
+  "result": {
+    "title": "結果",
+    "mean": "平均",
+    "SD": "標準偏差",
+    "variance": "分散",
+    "range": "範囲",
+    "CI": "信頼区間(95%)"
+  },
+  "inputExample": "入力例"
 }
