@@ -2,10 +2,17 @@ import { Button, Checkbox, FormControl, FormErrorMessage, Heading, Input } from 
 import type { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import type { FC, ReactNode } from 'react';
 
 import { useExpectedValue } from '@/components/functional/useExpectedValue';
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { ExpectResult } from '@/components/model/ExpectResult';
+
+const H2: FC<{ children: ReactNode }> = ({ children }) => (
+  <Heading as="h2" size="lg" className="my-4 border-b-2 border-gray-200 pb-1">
+    {children}
+  </Heading>
+);
 
 const Home: NextPage = () => {
   const [t] = useTranslation('expect');
@@ -37,14 +44,14 @@ const Home: NextPage = () => {
           </form>
 
           <div className="my-8">
-            <Heading as="h2" size="lg" className="mb-4">
-              {t('result.title')}
-            </Heading>
+            <H2>{t('result.title')}</H2>
             <ExpectResult result={result} />
           </div>
 
-          <div className="my-8 border-l-4 pl-2 text-gray-500 dark:text-gray-400">
-            <Heading as="h2" size="md" className="py-2">
+          <H2>{t('usage.title')}</H2>
+          <p>{t('usage.description')}</p>
+          <div className="my-8 border-l-4 pl-2 text-gray-500 dark:text-gray-300">
+            <Heading as="h3" size="md" className="py-2">
               {t('inputExample')}
             </Heading>
             <ul className="pl-2">
