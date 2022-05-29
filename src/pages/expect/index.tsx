@@ -2,7 +2,6 @@ import { Button, Checkbox, FormControl, FormErrorMessage, Heading, Input } from 
 import type { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useEffect } from 'react';
 
 import { useExpectedValue } from '@/components/functional/useExpectedValue';
 import { IndexLayout } from '@/components/layout/IndexLayout';
@@ -11,10 +10,6 @@ import { ExpectResult } from '@/components/model/ExpectResult';
 const Home: NextPage = () => {
   const [t] = useTranslation('expect');
   const { inputVal, onInputChange, isAutoCalc, onAutoCalcChange, onSubmit, result } = useExpectedValue();
-
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
 
   return (
     <>
