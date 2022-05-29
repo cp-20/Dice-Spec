@@ -1,19 +1,18 @@
 import type { ChangeEventHandler, FormEventHandler } from 'react';
 import { useState } from 'react';
 
-import { calcExpectedValue } from '@/features/parser/expect';
-import type { expectedValue } from '@/typings/ast';
+export type successResult<T> = T & { error: false };
 
-export type successResult = expectedValue & { error: false };
+export type calcResult<T> = { error: true } | successResult<T> | null;
 
-export type expectResult = { error: true } | successResult | null;
+export type parser<T> = (input: string) => T;
 
-const calculation = (input: string): expectResult => {
+const calculation = <T,>(input: string, parser: parser<T>): calcResult<T> => {
   if (input.length === 0) {
     return null;
   }
   try {
-    const result = calcExpectedValue(input);
+    const result = parser(input);
     return {
       ...result,
       error: false,
@@ -27,14 +26,14 @@ const calculation = (input: string): expectResult => {
 
 let timeout: NodeJS.Timeout | null = null;
 
-export const useExpectedValue = () => {
+export const useExpectedValue = <T,>(parser: parser<T>) => {
   const [inputVal, setInputVal] = useState('');
   const [isAutoCalc, setIsAutoCalc] = useState(true);
-  const [result, setResult] = useState<expectResult>(null);
+  const [result, setResult] = useState<calcResult<T>>(null);
 
   const onSubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    setResult(calculation(inputVal));
+    setResult(calculation(inputVal, parser));
   };
 
   const onInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -44,7 +43,7 @@ export const useExpectedValue = () => {
         clearTimeout(timeout);
       }
       timeout = setTimeout(() => {
-        setResult(calculation(e.target.value));
+        setResult(calculation(e.target.value, parser));
       }, 500);
     }
   };

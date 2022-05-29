@@ -2,14 +2,17 @@ import { Stat, StatHelpText, StatLabel, StatNumber } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
 
-import type { expectResult, successResult } from '../functional/useExpectedValue';
+import type { expectedValue } from '@/typings/ast';
+
+import type { calcResult, successResult } from '../functional/useCalculation';
 
 const round = (value: number) => Math.round(value * 10) / 10;
 
-export const ExpectResult: FC<{ result: expectResult }> = ({ result }) => {
+export const ExpectResult: FC<{ result: calcResult<expectedValue> }> = ({ result }) => {
   const [t] = useTranslation('expect');
 
-  const isSuccess = (result: expectResult): result is successResult => (result ? !result.error : false);
+  const isSuccess = (result: calcResult<expectedValue>): result is successResult<expectedValue> =>
+    result ? !result.error : false;
   const fallback = result ? result.error ? '-' : <></> : '-';
 
   const mean = isSuccess(result) ? round(result.mean) : fallback;
