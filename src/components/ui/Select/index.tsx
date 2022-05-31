@@ -64,9 +64,7 @@ export const Select: FC<{
             value={value}
             onChange={(e) => setValue(e.target.value)}
             ref={inputRef}
-            __css={{
-              borderColor: isInputFocused && '#3182ce',
-            }}
+            className={cx(isInputFocused && '!border-[#3182ce]')}
             onFocus={() => {
               setIsInputFocused(true);
               inputRef.current?.setSelectionRange(0, value.length);
@@ -124,7 +122,7 @@ export const Select: FC<{
           tabIndex={-1}
           ref={listRef}
           className={cx(
-            'absolute z-10 max-h-[10rem] w-full origin-top overflow-y-auto bg-white shadow-lg transition-transform duration-100 dark:bg-[#1e2533] dark:bg-gray-500/5',
+            'absolute z-10 max-h-[10rem] w-full origin-top translate-y-[0.1rem] overflow-y-auto bg-white shadow-lg transition-transform duration-100 dark:bg-[#1e2533]',
             isInputFocused ? 'scale-y-100' : 'scale-y-0'
           )}
         >
