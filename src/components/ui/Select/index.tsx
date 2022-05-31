@@ -12,7 +12,8 @@ import { cx } from '@/features/utils/cx';
 export const Select: FC<{
   items: { key: string; value: string }[];
   active: MutableRefObject<string>;
-}> = ({ items, active }) => {
+  onChange?: (key: string) => void;
+}> = ({ items, active, onChange }) => {
   const [t] = useTranslation('common');
 
   const getActiveValue = useCallback(
@@ -140,6 +141,7 @@ export const Select: FC<{
                 )}
                 onMouseDown={() => {
                   active.current = item.key;
+                  onChange && onChange(active.current);
                   setTargetIndex(getTargetIndex());
                   closeSelect();
                 }}

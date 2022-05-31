@@ -21,9 +21,9 @@ export const SystemSelect: FC = () => {
     }
   }, [config.apiServer, data]);
 
-  useEffect(() => {
-    if (data && setConfig && config.system.id !== active.current) {
-      fetch(config.apiServer + '/v2/game_system/' + active.current, { keepalive: true })
+  const onChange = (key: string) => {
+    if (setConfig) {
+      fetch(config.apiServer + '/v2/game_system/' + key, { keepalive: true })
         .then((res) => res.json())
         .then((res: BCDice.gameSystemInfoResponse) => {
           if (res.ok) {
@@ -39,12 +39,16 @@ export const SystemSelect: FC = () => {
           }
         });
     }
-  }, [data, setConfig, config]);
+  };
 
   return (
     <>
       {data ? (
-        <Select items={data.game_system.map((item) => ({ key: item.id, value: item.name }))} active={active} />
+        <Select
+          items={data.game_system.map((item) => ({ key: item.id, value: item.name }))}
+          active={active}
+          onChange={onChange}
+        />
       ) : (
         <Select items={[{ key: config.system.id, value: config.system.name }]} active={active} />
       )}
