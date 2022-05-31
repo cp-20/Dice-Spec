@@ -13,5 +13,7 @@
     "dice": "ダイスロール"
   },
 
-  "inputExample": "入力例"
+  "inputExample": "入力例",
+
+  "noItemFound": "見つかりませんでした"
 }

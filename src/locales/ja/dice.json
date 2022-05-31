@@ -1,3 +1,28 @@
 {
-  
+  "title": "ダイスロール",
+  "description": "ダイスを振るツール。",
+  "form": {
+    "placeholder": "コマンドを入力してください",
+    "submit": "ロール",
+    "system": "ゲームシステム",
+    "settings": {
+      "title": "高度な設定",
+      "help": "ヘルプを表示する",
+      "sound": "サウンドを再生する",
+      "volume": "音量",
+      "apiServer": "使用するBCDice APIサーバー"
+    },
+    "error": "形式が正しくありません"
+  },
+  "result": {
+    "title": "結果",
+    "mean": "平均",
+    "SD": "標準偏差",
+    "variance": "分散",
+    "range": "範囲",
+    "CI": "信頼区間(95%)"
+  },
+  "usage": {
+    "title": "使い方"
+  }
 }
