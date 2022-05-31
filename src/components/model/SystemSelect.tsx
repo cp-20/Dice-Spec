@@ -1,3 +1,5 @@
+import { useToast } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
 import { useState } from 'react';
 import { useRef } from 'react';
@@ -9,6 +11,8 @@ import { configContext } from '@/pages/dice';
 import type { BCDice } from '@/typings/bcdice';
 
 export const SystemSelect: FC = () => {
+  const [t] = useTranslation('dice');
+  const toast = useToast();
   const { config, setConfig } = useContext(configContext);
   const [data, setData] = useState<BCDice.gameSystemResponse | null>(null);
   const active = useRef(config.system.id);
@@ -17,9 +21,15 @@ export const SystemSelect: FC = () => {
     if (data === null) {
       fetch(config.apiServer + '/v2/game_system', { keepalive: true })
         .then((res) => res.json())
-        .then((res) => setData(res));
+        .then((res) => setData(res))
+        .catch((err) => {
+          console.error(err);
+          toast({
+            title: t('errors.notFound'),
+          });
+        });
     }
-  }, [config.apiServer, data]);
+  }, [config.apiServer, data, t, toast]);
 
   const onChange = (key: string) => {
     if (setConfig) {
@@ -36,7 +46,19 @@ export const SystemSelect: FC = () => {
                 help_message: res.help_message,
               },
             });
+          } else {
+            toast({
+              title: t('errors.other'),
+            });
           }
+        })
+        .catch((err) => {
+          console.error(err);
+          toast({
+            title: t('errors.notFound'),
+            status: 'error',
+            isClosable: true,
+          });
         });
     }
   };

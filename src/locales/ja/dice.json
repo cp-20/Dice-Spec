@@ -22,7 +22,8 @@
     "range": "範囲",
     "CI": "信頼区間(95%)"
   },
-  "usage": {
-    "title": "使い方"
+  "errors": {
+    "notFound": "BCDice APIサーバーが見つかりません。BCDice APIサーバーのURLを設定してください。",
+    "other": "エラーが発生しました。"
   }
 }
