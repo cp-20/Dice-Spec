@@ -59,5 +59,6 @@ export const useCalculation = <T,>(parser: parser<T>, defaultAutoCalc = true) =>
     onAutoCalcChange,
     onSubmit,
     result,
+    setResult,
   };
 };

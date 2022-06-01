@@ -3,14 +3,19 @@ import type { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { useEffect } from 'react';
 import { createContext, useState } from 'react';
 import { BsDice5 } from 'react-icons/bs';
 
 import { MultiLineBody } from '@/components/functional/MuliLineBody';
+import type { calcResult, successResult } from '@/components/functional/useCalculation';
 import { useCalculation } from '@/components/functional/useCalculation';
+import type { diceRollResult, errorResult } from '@/components/functional/useDiceRoll';
 import { useDiceRoll } from '@/components/functional/useDiceRoll';
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { AdvancedSettings } from '@/components/model/AdvancedSettings';
+import type { diceResult } from '@/components/model/DiceResult';
+import { DiceResult } from '@/components/model/DiceResult';
 import { SystemSelect } from '@/components/model/SystemSelect';
 import { FormLabel } from '@/components/ui/FormLabel';
 import { H1 } from '@/components/ui/Heading';
@@ -53,19 +58,42 @@ export const configContext = createContext<{
   setConfig: null,
 });
 
+type PromiseResult = successResult<{ result: Promise<errorResult | diceRollResult> }>;
+
+const isPromiseResult = (result: calcResult<PromiseResult | errorResult>): result is PromiseResult =>
+  result ? Object.hasOwn(result, 'result') : false;
+
 const Home: NextPage = () => {
   const [t] = useTranslation('dice');
-  const { diceRoll } = useDiceRoll();
-  const { inputVal, onInputChange, onSubmit } = useCalculation(diceRoll, false);
   const [config, setConfig] = useState(initialConfig);
-  const [error, setError] = useState(false);
-  const validate = (input: string) => {
-    if (input.length === 0) {
-      setError(false);
-    } else {
-      setError(!input.match(config.system.command_pattern));
+  const { diceRoll, validator } = useDiceRoll(config);
+  const { inputVal, onInputChange, onSubmit, result, setResult } = useCalculation(diceRoll, false);
+  const [isInvalid, setIsInvalid] = useState(false);
+  const [diceResult, setDiceResult] = useState<diceResult[]>([]);
+
+  useEffect(() => {
+    if (result) {
+      if (isPromiseResult(result)) {
+        Promise.resolve(result.result).then((result) => {
+          if (result.success) {
+            const rollResult: diceResult = {
+              date: new Date(),
+              system: config.system.name,
+              success: result.result.success || result.result.critiacl,
+              failure: result.result.failure || result.result.fumble,
+              text: result.result.text,
+            };
+            setDiceResult([...diceResult, rollResult]);
+            setResult(null);
+          } else {
+            setIsInvalid(true);
+          }
+        });
+      } else if (result.error) {
+        setIsInvalid(true);
+      }
     }
-  };
+  }, [config.system.name, diceResult, result, setResult]);
 
   return (
     <>
@@ -84,14 +112,16 @@ const Home: NextPage = () => {
               <SystemSelect />
             </FormControl>
 
+            <DiceResult result={diceResult} />
+
             <Inputbox
               onSubmit={onSubmit}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                validate(e.target.value);
+                setIsInvalid(validator(e.target.value) === false);
                 onInputChange(e);
               }}
               inputVal={inputVal}
-              isInvalid={error}
+              isInvalid={isInvalid}
               placeholder={t('form.placeholder')}
               submitText={t('form.submit')}
               errorText={t('form.error')}

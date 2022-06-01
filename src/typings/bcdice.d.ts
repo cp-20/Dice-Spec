@@ -44,26 +44,26 @@ export namespace BCDice {
       }
     | ErrorResponse;
 
+  export type DiceRollSuccessResponse = {
+    ok: true;
+    text: string;
+    secret: boolean;
+    success: boolean;
+    failure: boolean;
+    critiacl: boolean;
+    fumble: boolean;
+    rands: {
+      kinds: 'nomal' | 'tens_d10' | 'd9';
+      sides: number;
+      value: number;
+    }[];
+  };
+
   /**
    * URL: /v2/game_system/{id}/roll
    * @param command command string (e.g. "1D100<=40")
    */
-  export type DiceRollResponse =
-    | {
-        ok: true;
-        text: string;
-        secret: boolean;
-        success: boolean;
-        failure: boolean;
-        critiacl: boolean;
-        fumble: boolean;
-        rands: {
-          kinds: 'nomal' | 'tens_d10' | 'd9';
-          sides: number;
-          value: number;
-        }[];
-      }
-    | ErrorResponse;
+  export type DiceRollResponse = DiceRollSuccessResponse | ErrorResponse;
 
   export type ErrorResponse = {
     ok: false;

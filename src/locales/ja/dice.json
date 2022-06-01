@@ -1,6 +1,7 @@
 {
   "title": "ダイスロール",
   "description": "ダイスを振るツール。",
+  "output": "出力",
   "form": {
     "placeholder": "コマンドを入力してください",
     "submit": "ロール",
