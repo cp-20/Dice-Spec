@@ -26,6 +26,8 @@ export const SystemSelect: FC = () => {
           console.error(err);
           toast({
             title: t('errors.notFound'),
+            status: 'error',
+            isClosable: true,
           });
         });
     }
@@ -49,6 +51,8 @@ export const SystemSelect: FC = () => {
           } else {
             toast({
               title: t('errors.other'),
+              status: 'error',
+              isClosable: true,
             });
           }
         })
