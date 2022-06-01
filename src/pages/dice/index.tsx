@@ -12,6 +12,7 @@ import type { calcResult, successResult } from '@/components/functional/useCalcu
 import { useCalculation } from '@/components/functional/useCalculation';
 import type { diceRollResult, errorResult } from '@/components/functional/useDiceRoll';
 import { useDiceRoll } from '@/components/functional/useDiceRoll';
+import { useDiceSound } from '@/components/functional/useDiceSound';
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { AdvancedSettings } from '@/components/model/AdvancedSettings';
 import type { diceResult } from '@/components/model/DiceResult';
@@ -70,12 +71,14 @@ const Home: NextPage = () => {
   const { inputVal, onInputChange, onSubmit, result, setResult } = useCalculation(diceRoll, false);
   const [isInvalid, setIsInvalid] = useState(false);
   const [diceResult, setDiceResult] = useState<diceResult[]>([]);
+  const { play } = useDiceSound(config);
 
   useEffect(() => {
     if (result) {
       if (isPromiseResult(result)) {
         Promise.resolve(result.result).then((result) => {
           if (result.success) {
+            play();
             const rollResult: diceResult = {
               date: new Date(),
               system: config.system.name,
