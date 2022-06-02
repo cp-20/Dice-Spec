@@ -37,11 +37,17 @@ export const DiceResult: FC<{ result: diceResult[] }> = ({ result }) => {
         <p className="text-md font-bold text-gray-600 dark:text-gray-300">{t('output')}</p>
         {result.map((item, index) => (
           <div key={index} className="flex space-x-2">
-            <p className="text-gray-500">{item.system}</p>
-            <p className={cx('flex-1', item.success && 'text-blue-700', item.failure && 'text-red-700')}>
+            <p className="text-gray-500 dark:text-gray-400">{item.system}</p>
+            <p
+              className={cx(
+                'flex-1',
+                item.success && 'text-blue-700 dark:text-blue-500',
+                item.failure && 'text-red-700 dark:text-red-500'
+              )}
+            >
               <MultiLineBody body={item.text} />
             </p>
-            <p className="text-gray-500">{getTime(item.date)}</p>
+            <p className="text-gray-500 dark:text-gray-400">{getTime(item.date)}</p>
           </div>
         ))}
       </div>
