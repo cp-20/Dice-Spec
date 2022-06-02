@@ -97,7 +97,7 @@ const Home: NextPage = () => {
         setIsInvalid(true);
       }
     }
-  }, [config.system.name, diceResult, play, result, setResult]);
+  }, [config.system.name, diceResult, play, result, setInputVal, setResult]);
 
   return (
     <>
