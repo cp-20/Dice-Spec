@@ -68,7 +68,7 @@ const Home: NextPage = () => {
   const [t] = useTranslation('dice');
   const [config, setConfig] = useState(initialConfig);
   const { diceRoll, validator } = useDiceRoll(config);
-  const { inputVal, onInputChange, onSubmit, result, setResult } = useCalculation(diceRoll, false);
+  const { inputVal, setInputVal, onInputChange, onSubmit, result, setResult } = useCalculation(diceRoll, false);
   const [isInvalid, setIsInvalid] = useState(false);
   const [diceResult, setDiceResult] = useState<diceResult[]>([]);
   const { play } = useDiceSound(config);
@@ -79,6 +79,7 @@ const Home: NextPage = () => {
         Promise.resolve(result.result).then((result) => {
           if (result.success) {
             play();
+            setInputVal('');
             const rollResult: diceResult = {
               date: new Date(),
               system: config.system.name,

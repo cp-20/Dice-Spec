@@ -54,6 +54,7 @@ export const useCalculation = <T,>(parser: parser<T>, defaultAutoCalc = true) =>
 
   return {
     inputVal,
+    setInputVal,
     onInputChange,
     isAutoCalc,
     onAutoCalcChange,
