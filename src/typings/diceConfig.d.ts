@@ -9,4 +9,5 @@ export type diceConfig = {
   volume: number;
   help: boolean;
   apiServer: string;
+  loaded: boolean;
 };

@@ -14,42 +14,48 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import type { FC, ReactNode } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import { FaCog } from 'react-icons/fa';
 
 import { FormLabel } from '@/components/ui/FormLabel';
 import { configContext } from '@/pages/dice';
+import type { diceConfig } from '@/typings/diceConfig';
 
-const FormInput: FC<{ children: ReactNode; onChange: (input: string) => void; defaultValue: string }> = ({
+const FormInput: FC<{ children: ReactNode; onChange: (input: string) => void; value: string }> = ({
   children,
   onChange,
-  defaultValue,
+  value,
 }) => (
   <FormControl>
     <FormLabel>{children}</FormLabel>
-    <Input onChange={(e) => onChange(e.target.value)} defaultValue={defaultValue} />
+    <Input onChange={(e) => onChange(e.target.value)} value={value} />
   </FormControl>
 );
 
-const FormSwitch: FC<{ children: ReactNode; onChange: (input: boolean) => void; defaultChecked: boolean }> = ({
+const FormSwitch: FC<{ children: ReactNode; onChange: (input: boolean) => void; checked: boolean }> = ({
   children,
   onChange,
-  defaultChecked,
-}) => (
-  <FormControl className="inline-flex flex-1 items-center px-4 py-2">
-    <FormLabel className="!inline-block min-w-[10rem] flex-1">{children}</FormLabel>
-    <Switch onChange={(e) => onChange(e.target.checked)} defaultChecked={defaultChecked} />
-  </FormControl>
-);
+  checked,
+}) => {
+  return (
+    <FormControl className="inline-flex flex-1 items-center px-4 py-2">
+      <FormLabel className="!inline-block min-w-[10rem] flex-1">{children}</FormLabel>
+      <Switch onChange={(e) => onChange(e.target.checked)} isChecked={checked} />
+    </FormControl>
+  );
+};
 
-const FormSlider: FC<{ children: ReactNode; onChange: (input: number) => void; defaultValue: number }> = ({
-  children,
-  onChange,
-  defaultValue,
-}) => (
+const FormSlider: FC<{
+  children: ReactNode;
+  onChange: (input: number) => void;
+  onChangeEnd: (input: number) => void;
+  value: number;
+}> = ({ children, onChange, onChangeEnd, value }) => (
   <FormControl>
     <FormLabel>{children}</FormLabel>
-    <Slider defaultValue={defaultValue} onChangeEnd={(value) => onChange(value)}>
+    <Slider value={value} onChange={onChange} onChangeEnd={onChangeEnd}>
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>
@@ -58,9 +64,14 @@ const FormSlider: FC<{ children: ReactNode; onChange: (input: number) => void; d
   </FormControl>
 );
 
-export const AdvancedSettings: FC = () => {
+export const AdvancedSettings: FC<{ config: diceConfig }> = ({ config }) => {
   const [t] = useTranslation('dice');
-  const { config, setConfig } = useContext(configContext);
+  const { setConfig } = useContext(configContext);
+  const [volume, setVolume] = useState(config.volume);
+
+  useEffect(() => {
+    setVolume(config.volume);
+  }, [config.volume]);
 
   return (
     <>
@@ -75,27 +86,28 @@ export const AdvancedSettings: FC = () => {
             <div className="flex flex-wrap">
               <FormSwitch
                 onChange={(input: boolean) => setConfig && setConfig({ ...config, help: input })}
-                defaultChecked={config.help}
+                checked={config.help}
               >
                 {t('form.settings.help')}
               </FormSwitch>
               <FormSwitch
                 onChange={(input: boolean) => setConfig && setConfig({ ...config, sound: input })}
-                defaultChecked={config.sound}
+                checked={config.sound}
               >
                 {t('form.settings.sound')}
               </FormSwitch>
             </div>
             <div className="space-y-6 px-4 py-4">
               <FormSlider
-                onChange={(input) => setConfig && setConfig({ ...config, volume: input })}
-                defaultValue={config.volume}
+                onChange={(input) => setVolume(input)}
+                onChangeEnd={(input) => setConfig && setConfig({ ...config, volume: input })}
+                value={volume}
               >
                 {t('form.settings.volume')}
               </FormSlider>
               <FormInput
                 onChange={(input) => setConfig && setConfig({ ...config, apiServer: input })}
-                defaultValue={config.apiServer}
+                value={config.apiServer}
               >
                 {t('form.settings.apiServer')}
               </FormInput>

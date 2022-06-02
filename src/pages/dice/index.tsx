@@ -49,6 +49,7 @@ https://docs.bcdice.org/`,
   help: true,
   sound: true,
   volume: 50,
+  loaded: false,
 };
 
 export const configContext = createContext<{
@@ -99,6 +100,19 @@ const Home: NextPage = () => {
     }
   }, [config.system.name, diceResult, play, result, setInputVal, setResult]);
 
+  useEffect(() => {
+    if (config.loaded) {
+      localStorage.setItem('diceConfig', JSON.stringify(config));
+    } else {
+      const localConfig = localStorage.getItem('diceConfig');
+      if (localConfig) {
+        setConfig({ ...JSON.parse(localConfig), loaded: true });
+      } else {
+        setConfig({ ...initialConfig, loaded: true });
+      }
+    }
+  }, [config]);
+
   return (
     <>
       <configContext.Provider value={{ config, setConfig }}>
@@ -138,7 +152,7 @@ const Home: NextPage = () => {
               </Text>
             </div>
 
-            <AdvancedSettings />
+            <AdvancedSettings config={config} />
           </div>
         </IndexLayout>
       </configContext.Provider>
