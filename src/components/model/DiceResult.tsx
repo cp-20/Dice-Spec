@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 
 import { cx } from '@/features/utils/cx';
+import { zeroPadding } from '@/features/utils/zeroPadding';
 
 import { MultiLineBody } from '../functional/MuliLineBody';
 
@@ -14,6 +15,8 @@ export type diceResult = {
   failure: boolean;
   text: string;
 };
+
+const getTime = (date: Date) => `${zeroPadding(date.getHours(), 2)}:${zeroPadding(date.getMinutes(), 2)}`;
 
 export const DiceResult: FC<{ result: diceResult[] }> = ({ result }) => {
   const [t] = useTranslation('dice');
@@ -38,7 +41,7 @@ export const DiceResult: FC<{ result: diceResult[] }> = ({ result }) => {
             <p className={cx('flex-1', item.success && 'text-blue-700', item.failure && 'text-red-700')}>
               <MultiLineBody body={item.text} />
             </p>
-            <p className="text-gray-500">{`${item.date.getHours()}:${item.date.getMinutes()}`}</p>
+            <p className="text-gray-500">{getTime(item.date)}</p>
           </div>
         ))}
       </div>
