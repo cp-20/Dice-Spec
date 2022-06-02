@@ -21,7 +21,7 @@ import { SystemSelect } from '@/components/model/SystemSelect';
 import { FormLabel } from '@/components/ui/FormLabel';
 import { H1 } from '@/components/ui/Heading';
 import { Inputbox } from '@/components/ui/Inputbox';
-import type { diceConfig } from '@/typings/diceConfig';
+import type { diceConfig, jsonDiceConfig } from '@/typings/diceConfig';
 
 const initialConfig: diceConfig = {
   apiServer: 'https://bcdice.onlinesession.app',
@@ -102,11 +102,15 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (config.loaded) {
-      localStorage.setItem('diceConfig', JSON.stringify(config));
+      const raw_command_pattern = String(config.system.command_pattern);
+      const command_pattern = raw_command_pattern.slice(1).substring(0, raw_command_pattern.lastIndexOf('/'));
+      localStorage.setItem('diceConfig', JSON.stringify({ ...config, system: { ...config.system, command_pattern } }));
     } else {
       const localConfig = localStorage.getItem('diceConfig');
       if (localConfig) {
-        setConfig({ ...JSON.parse(localConfig), loaded: true });
+        const parsedConfig = JSON.parse(localConfig) as jsonDiceConfig;
+        const command_pattern = new RegExp(parsedConfig.system.command_pattern);
+        setConfig({ ...parsedConfig, system: { ...parsedConfig.system, command_pattern }, loaded: true });
       } else {
         setConfig({ ...initialConfig, loaded: true });
       }
