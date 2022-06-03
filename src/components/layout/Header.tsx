@@ -1,4 +1,4 @@
-import { Box, IconButton, useColorMode, useDisclosure } from '@chakra-ui/react';
+import { Box, IconButton, Tooltip, useColorMode, useDisclosure } from '@chakra-ui/react';
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
@@ -29,34 +29,37 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
 
           <div className="ml-auto flex items-center space-x-4">
             {/* Developer's Twitter */}
-            <IconButton
-              size="sm"
-              icon={<FaTwitter title={t('header.twitter')} />}
-              onClick={() => window.open('https://twitter.com/__cp20__', '_blank')}
-              aria-label={t('header.twitter')}
-              title={t('header.twitter')}
-            />
+            <Tooltip label={t('header.twitter')}>
+              <IconButton
+                size="sm"
+                icon={<FaTwitter title={t('header.twitter')} />}
+                onClick={() => window.open('https://twitter.com/__cp20__', '_blank')}
+                aria-label={t('header.twitter')}
+              />
+            </Tooltip>
 
             {/* toggleColorMode Button */}
-            <IconButton
-              size="sm"
-              icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
-              onClick={() => toggleColorMode()}
-              aria-label={t('header.toggleColorMode')}
-              title={t('header.toggleColorMode')}
-            />
+            <Tooltip label={t('header.toggleColorMode')}>
+              <IconButton
+                size="sm"
+                icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
+                onClick={() => toggleColorMode()}
+                aria-label={t('header.toggleColorMode')}
+              />
+            </Tooltip>
 
             {/* navigation menu */}
             {isDesktop || (
               <>
-                <IconButton
-                  size="sm"
-                  icon={<FaBars />}
-                  aria-label={t('header.navigation')}
-                  title={t('header.navigation')}
-                  ref={btnRef}
-                  onClick={onOpen}
-                />
+                <Tooltip label={t('header.navigation')}>
+                  <IconButton
+                    size="sm"
+                    icon={<FaBars />}
+                    aria-label={t('header.navigation')}
+                    ref={btnRef}
+                    onClick={onOpen}
+                  />
+                </Tooltip>
                 <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
                   <DrawerOverlay />
                   <DrawerContent>
