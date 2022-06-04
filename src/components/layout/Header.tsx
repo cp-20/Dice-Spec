@@ -25,7 +25,9 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
     <>
       <Box shadow="sm" _dark={{ shadow: 'dark-lg' }}>
         <header className="flex py-2 px-4">
-          <StyledLink href="/">{t('title')}</StyledLink>
+          <StyledLink href="/" className="font-ZenKaku text-lg transition-opacity hover:opacity-60">
+            {t('title')}
+          </StyledLink>
 
           <div className="ml-auto flex items-center space-x-4">
             {/* Developer's Twitter */}
