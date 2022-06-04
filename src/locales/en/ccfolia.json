@@ -1,3 +1,54 @@
 {
-  
+  "title": "CCFOLIA Export",
+  "description": "When you fill in each item of your character, this tool formats it into a format that can be output to CCFOLIA. Conversely, it can also read from the CCFOLIA output format, which is useful when you want to change a few values here and there!",
+
+  "load_from_clipboard": "Read from clipboard",
+  "load_from_clipboard_success": "Successfully read from clipboard.",
+  "load_from_clipboard_failure": "Failed to read from clipboard.",
+  "load_from_clipboard_failure_description": "Data does not exist in the clipboard or is in an incorrect format.",
+  "save_to_clipboard": "Copy to clipboard",
+  "save_to_clipboard_success": "Copied!",
+  "save_to_clipboard_failure": "Failed to copy to clipboard.",
+
+  "form": {
+    "name": "Name",
+    "name_placeholder": "Character name",
+    "memo": "Memo",
+    "memo_placeholder": "Note",
+    "initiative": "Initiative",
+    "initiative_tips": "This value indicates the character's ability to act. It affects the order in which characters are displayed.",
+    "externalUrl": "reference URL",
+    "externalUrl_tips": "The URL of the character reference, usually the URL of the charadter sheet.",
+    "externalUrl_placeholder": "https://www.example.com/some_character",
+    "status": {
+      "title": "Status",
+      "label": "Label",
+      "value": "Value",
+      "max": "Max Value",
+      "delete": "Remove this status",
+      "add": "Add new status"
+    },
+    "status_description": "From left to right, enter the label, value, and maximum value, in that order.",
+    "status_tips": "Set the statuses that fluctuate in conjunction with the character, such as HP and MP. You can refer to the current value from the chat by saying {label}.",
+    "params": {
+      "title": "Paramater",
+      "label": "Label",
+      "value": "Value",
+      "delete": "Delete this parameter",
+      "add": "Add new parameter"
+    },
+    "params_tips": "Set parameters for the character that seldom vary. You can refer to the value from chat by saying something like {label}.",
+    "color": "Chat color",
+    "color_tips": "The color of the chat when you select a character.",
+    "commands": "Chat palette",
+    "commands_placeholder": "You can refer to the value of a status parameter by doing something like {attack power}.",
+    "commands_tips": "This command can be entered quickly from the chat when a character is selected.",
+    "output": "Output",
+    "output_placeholder": "The results are output here"
+  },
+  "chat": {
+    "name": "Character 1",
+    "time": "Today 13:04",
+    "content": "This is a test message. The color is reflected in the character's name."
+  }
 }

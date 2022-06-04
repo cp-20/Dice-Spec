@@ -1,5 +1,7 @@
 {
   "description": "ダイススペックはTRPGのちょっとしたツールを集めたサービスです。",
+  
+  "TryItNow": "今すぐ使ってみる！",
 
   "functions": {
     "title": "ダイススペックの機能",

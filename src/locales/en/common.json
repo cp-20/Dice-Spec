@@ -1,3 +1,21 @@
 {
-  
+  "copyright": "© 2022 cp20",
+
+  "title": "DiceSpec",
+
+  "header": {
+    "twitter": "Developer's Twitter",
+    "toggleColorMode": "Switch to light/dark mode",
+    "navigation": "Contents"
+  },
+
+  "navigation": {
+    "expect": "Dice Expecter",
+    "dice": "Dice Roll",
+    "ccfolia": "CCFOLIA Export"
+  },
+
+  "inputExample": "Input Examples",
+
+  "noItemFound": "No item found"
 }

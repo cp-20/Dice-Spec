@@ -1,3 +1,43 @@
 {
-  
+  "description": "DiceSpec is a service that collects little tools for TRPG.",
+
+  "TryItNow": "Try it now!",
+
+  "functions": {
+    "title": "DiceSpec Tools",
+    "1": {
+      "title": "Dice Expecter",
+      "description": "Calculate the expected value of the dice, etc. You can predict what kind of result you will get when you roll the dice."
+    },
+    "2": {
+      "title": "Dice Roll",
+      "description": "You can roll any die you like, and because it uses BCDice, it is as comfortable to use as a session tool such as CCFOLIA."
+    },
+    "3": {
+      "title": "CCFOLIA Export",
+      "description": "When you fill in each item of your character, this tool formats it into a format that can be output to CCFOLIA. Conversely, it can also read from the CCFOLIA output format, which is useful when you want to change a few values here and there!"
+    }
+  },
+
+  "features": {
+    "title": "Features of DiceSpec",
+    "1": {
+      "title": "Totally free",
+      "description": "There is no charge for using DiceSpec."
+    },
+    "2": {
+      "title": "Nimble operation",
+      "description": "DiceSpec is designed with performance in mind, with little time spent waiting for processing."
+    },
+    "3": {
+      "title": "Open source",
+      "description": "DiceSpec is entirely developed as open source, and anyone is free to view and propose modifications. So users can use it with peace of mind."
+    }
+  },
+
+  "links": {
+    "title": "Related Links",
+    "twitter": "Developer's Twitter",
+    "github": "GitHub Repository"
+  }
 }

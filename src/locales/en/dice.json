@@ -1,3 +1,23 @@
 {
-  
+  "title": "Dice Roll",
+  "description": "You can roll any die you like, and because it uses BCDice, it is as comfortable to use as a session tool such as CCFOLIA.",
+  "output": "Output",
+  "form": {
+    "placeholder": "Command",
+    "submit": "ROLL",
+    "system": "Game system",
+    "settings": {
+      "title": "Advanced Settings",
+      "help": "Show Help",
+      "sound": "Play sound",
+      "volume": "Volume",
+      "apiServer": "BCDice API server to be used",
+      "apiServer_restore": "Restore default"
+    },
+    "error": "Incorrect format"
+  },
+  "errors": {
+    "notFound": "BCDice API server not found, please set the URL of the BCDice API server.",
+    "other": "An error has occurred."
+  }
 }

@@ -1,3 +1,24 @@
 {
-  
+  "title": "Dice Expecter",
+  "description": "Calculate the expected value of the dice, etc. You can predict what kind of result you will get when you roll the dice.",
+  "form": {
+    "placeholder": "Please enter the formula",
+    "submit": "Calculate",
+    "helptext": {
+      "error": "Failed to parse formula."
+    },
+    "autoCalc": "Automatic calculation upon change"
+  },
+  "result": {
+    "title": "Result",
+    "mean": "Mean",
+    "SD": "Standard Deviation",
+    "variance": "Variance",
+    "range": "Range",
+    "CI": "Confidence Interval (95%)"
+  },
+  "usage": {
+    "title": "Usage",
+    "description": "Entering a formula involving dice will calculate the expected value of that formula. Please refer to the input example below."
+  }
 }

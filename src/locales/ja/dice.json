@@ -1,6 +1,6 @@
 {
   "title": "ダイスロール",
-  "description": "ダイスを振るツール。",
+  "description": "好きなダイスを振ることができます。BCDiceを使っているため、CCFOLIAなどのセッションツールと変わらない使い心地で使えます。",
   "output": "出力",
   "form": {
     "placeholder": "コマンドを入力してください",
@@ -11,7 +11,8 @@
       "help": "ヘルプを表示する",
       "sound": "サウンドを再生する",
       "volume": "音量",
-      "apiServer": "使用するBCDice APIサーバー"
+      "apiServer": "使用するBCDice APIサーバー",
+      "apiServer_restore": "デフォルトに戻す"
     },
     "error": "形式が正しくありません"
   },
