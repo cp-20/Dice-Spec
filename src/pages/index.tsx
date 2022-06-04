@@ -18,7 +18,8 @@ const Home: NextPage = () => {
         <h1 className="py-8 text-center font-ZenKaku text-4xl sm:text-5xl md:text-6xl">{t('common:title')}</h1>
         <p className="text-center">{t('description')}</p>
 
-        <div className="my-8 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+        <h2 className="mt-16 mb-4 text-center text-xl font-bold">{t('features.title')}</h2>
+        <div className="mt-4 mb-8 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
           <LandingCard
             title={t('features.1.title')}
             content={t('features.1.description')}

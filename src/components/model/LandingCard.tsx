@@ -9,7 +9,7 @@ export const LandingCard: FC<{ title: string; content: string; href: string; ico
   icon,
 }) => (
   <>
-    <LinkBox className="flex-1 rounded-md border p-4">
+    <LinkBox className="flex-1 rounded-md border p-4 shadow-blue-50 transition-all hover:bg-blue-50 hover:shadow-md">
       <div className="flex items-center space-x-4 md:flex-col md:space-x-0 md:space-y-4">
         <div className="text-3xl sm:text-4xl md:text-5xl">{icon}</div>
         <div className="flex flex-col space-y-2 md:items-center">
