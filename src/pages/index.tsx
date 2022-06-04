@@ -2,11 +2,11 @@ import type { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { BsDice5 } from 'react-icons/bs';
-import { FaFileExport, FaSearch } from 'react-icons/fa';
+import { FaFileExport, FaGithub, FaSearch, FaTwitter } from 'react-icons/fa';
 
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
-import { LandingCard, LandingCardLink } from '@/components/model/LandingCard';
+import { LandingCard, LandingCardLink, LandingLink } from '@/components/model/LandingCard';
 import { LandingSection } from '@/components/model/LandingSection';
 
 const Home: NextPage = () => {
@@ -44,6 +44,11 @@ const Home: NextPage = () => {
           <LandingCard title={t('features.1.title')} content={t('features.1.description')} />
           <LandingCard title={t('features.2.title')} content={t('features.2.description')} />
           <LandingCard title={t('features.3.title')} content={t('features.3.description')} />
+        </LandingSection>
+
+        <LandingSection label={t('links.title')}>
+          <LandingLink href="https://twitter.com/__cp20__" icon={<FaTwitter />} label={t('links.twitter')} />
+          <LandingLink href="https://github.com/cp-20/Dice-Spec" icon={<FaGithub />} label={t('links.github')} />
         </LandingSection>
       </div>
       <Footer />

@@ -2,6 +2,8 @@ import { LinkBox, LinkOverlay } from '@chakra-ui/react';
 import Link from 'next/link';
 import type { FC, ReactNode } from 'react';
 
+import { StyledLink } from '@/components/ui/StyledLink';
+
 export const LandingCardLink: FC<{ title: string; content: string; href: string; icon: ReactNode }> = ({
   title,
   content,
@@ -26,8 +28,20 @@ export const LandingCardLink: FC<{ title: string; content: string; href: string;
 export const LandingCard: FC<{ title: string; content: string }> = ({ title, content }) => (
   <>
     <div className="flex-1 rounded-md border p-4 shadow-blue-50 transition-all hover:shadow-md">
-      <p className="text-lg font-bold">{title}</p>
+      <p className="mb-2 text-lg font-bold">{title}</p>
       <p className="text-sm text-gray-600 dark:text-gray-400">{content}</p>
     </div>
+  </>
+);
+
+export const LandingLink: FC<{ icon: ReactNode; label: string; href: string }> = ({ icon, label, href }) => (
+  <>
+    <StyledLink
+      href={href}
+      icon={icon}
+      className="rounded-md px-4 py-1 shadow-blue-50  transition-all hover:bg-blue-50 hover:shadow-sm"
+    >
+      {label}
+    </StyledLink>
   </>
 );
