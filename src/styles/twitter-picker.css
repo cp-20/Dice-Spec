@@ -1,0 +1,21 @@
+.dark .twitter-picker > div:nth-child(2) {
+  border-bottom-color: #1e2533 !important;
+}
+
+.dark .twitter-picker > div:nth-child(3) {
+  background: #1e2533;
+}
+
+.twitter-picker > div:nth-child(3) > div > input {
+  height: 30px !important;
+}
+
+.dark .twitter-picker > div:nth-child(3) > div > input {
+  background-color: #1e2533;
+  box-shadow: #303b52 0px 0px 0px 1px inset !important;
+  color: #ccc !important;
+}
+
+.dark .twitter-picker > div:nth-child(3) > div {
+  background-color: #303b52 !important;
+}

@@ -1,3 +1,54 @@
 {
-  
+  "title": "CCFOLIA出力",
+  "description": "各パラメータを入力するとCCFOLIAの形式に合わせた出力を行います。逆にクリップボードのデータから値を読み込むこともできます。",
+
+  "load_from_clipboard": "クリップボードから読み込み",
+  "load_from_clipboard_success": "クリップボードからの読み込みに成功しました。",
+  "load_from_clipboard_failure": "クリップボードからの読み込みに失敗しました。",
+  "load_from_clipboard_failure_description": "クリップボードにデータが存在しないか、形式が正しくありません。",
+  "save_to_clipboard": "クリップボードにコピー",
+  "save_to_clipboard_success": "クリップボードにコピーしました。",
+  "save_to_clipboard_failure": "クリップボードにコピーできませんでした。",
+
+  "form": {
+    "name": "名前",
+    "name_placeholder": "キャラ名",
+    "memo": "メモ",
+    "memo_placeholder": "メモ",
+    "initiative": "イニシアチブ",
+    "initiative_tips": "キャラの行動力を示す値です。キャラの表示順序に影響します。",
+    "externalUrl": "参照URL",
+    "externalUrl_tips": "キャラの参照先のURLです。通常はキャラシのURLが入ります。",
+    "externalUrl_placeholder": "https://www.example.com/some_character",
+    "status": {
+      "title": "ステータス",
+      "label": "ラベル",
+      "value": "値",
+      "max": "最大値",
+      "delete": "このステータスを削除",
+      "add": "新しいステータスを追加"
+    },
+    "status_description": "左からラベル、値、最大値の順に入力してください。",
+    "status_tips": "HPやMPなどのキャラクターに連動して変動するステータスを設定します。{ラベル名}のように発言するとチャットから現在値を参照することができます。",
+    "params": {
+      "title": "パラメータ",
+      "label": "ラベル",
+      "value": "値",
+      "delete": "このパラメータを削除",
+      "add": "新しいパラメータを追加"
+    },
+    "params_tips": "キャラクターに対してめったに変動しないパラメータを設定します。{ラベル名}のように発言するとチャットから値を参照することができます。",
+    "color": "チャットカラー",
+    "color_tips": "キャラを選択した時のチャットの色です。",
+    "commands": "チャットパレット",
+    "commands_placeholder": "{攻撃力}のようにすることでステータス・パラメータの値を参照できます",
+    "commands_tips": "キャラを選択した時にチャットから素早く入力できるコマンドです。",
+    "output": "出力",
+    "output_placeholder": "ここに結果が出力されます"
+  },
+  "chat": {
+    "name": "キャラ１",
+    "time": "今日 13:04",
+    "content": "これはテストメッセージです。キャラの名前に色が反映されます。"
+  }
 }

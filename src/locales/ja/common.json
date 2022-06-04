@@ -10,7 +10,8 @@
 
   "navigation": {
     "expect": "ダイス予測",
-    "dice": "ダイスロール"
+    "dice": "ダイスロール",
+    "ccfolia": "CCFOLIA出力"
   },
 
   "inputExample": "入力例",
