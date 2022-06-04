@@ -8,6 +8,7 @@ import { FaBars, FaMoon, FaSun } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 
 import { Navigation } from '@/components/layout/Navigation';
+import { LanguageSelect } from '@/components/model/LanguageSelect';
 import { StyledLink } from '@/components/ui/StyledLink';
 
 export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
@@ -29,52 +30,60 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
             {t('title')}
           </StyledLink>
 
-          <div className="ml-auto flex items-center space-x-4">
-            {/* Developer's Twitter */}
-            <Tooltip label={t('header.twitter')}>
-              <IconButton
-                size="sm"
-                icon={<FaTwitter title={t('header.twitter')} />}
-                onClick={() => window.open('https://twitter.com/__cp20__', '_blank')}
-                aria-label={t('header.twitter')}
-              />
-            </Tooltip>
+          <div className="ml-auto flex flex-col-reverse xs:flex-row xs:items-center xs:space-x-4">
+            <div className="mt-2 xs:mt-0">
+              {/* change languages */}
 
-            {/* toggleColorMode Button */}
-            <Tooltip label={t('header.toggleColorMode')}>
-              <IconButton
-                size="sm"
-                icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
-                onClick={() => toggleColorMode()}
-                aria-label={t('header.toggleColorMode')}
-              />
-            </Tooltip>
+              <LanguageSelect />
+            </div>
 
-            {/* navigation menu */}
-            {isDesktop || (
-              <>
-                <Tooltip label={t('header.navigation')}>
-                  <IconButton
-                    size="sm"
-                    icon={<FaBars />}
-                    aria-label={t('header.navigation')}
-                    ref={btnRef}
-                    onClick={onOpen}
-                  />
-                </Tooltip>
-                <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
-                  <DrawerOverlay />
-                  <DrawerContent>
-                    <DrawerCloseButton />
-                    <DrawerHeader>{t('header.navigation')}</DrawerHeader>
+            <div className="flex justify-end space-x-4">
+              {/* Developer's Twitter */}
+              <Tooltip label={t('header.twitter')}>
+                <IconButton
+                  size="sm"
+                  icon={<FaTwitter title={t('header.twitter')} />}
+                  onClick={() => window.open('https://twitter.com/__cp20__', '_blank')}
+                  aria-label={t('header.twitter')}
+                />
+              </Tooltip>
 
-                    <DrawerBody>
-                      <Navigation />
-                    </DrawerBody>
-                  </DrawerContent>
-                </Drawer>
-              </>
-            )}
+              {/* toggleColorMode Button */}
+              <Tooltip label={t('header.toggleColorMode')}>
+                <IconButton
+                  size="sm"
+                  icon={colorMode === 'light' ? <FaSun /> : <FaMoon />}
+                  onClick={() => toggleColorMode()}
+                  aria-label={t('header.toggleColorMode')}
+                />
+              </Tooltip>
+
+              {/* navigation menu */}
+              {isDesktop || (
+                <>
+                  <Tooltip label={t('header.navigation')}>
+                    <IconButton
+                      size="sm"
+                      icon={<FaBars />}
+                      aria-label={t('header.navigation')}
+                      ref={btnRef}
+                      onClick={onOpen}
+                    />
+                  </Tooltip>
+                  <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
+                    <DrawerOverlay />
+                    <DrawerContent>
+                      <DrawerCloseButton />
+                      <DrawerHeader>{t('header.navigation')}</DrawerHeader>
+
+                      <DrawerBody>
+                        <Navigation />
+                      </DrawerBody>
+                    </DrawerContent>
+                  </Drawer>
+                </>
+              )}
+            </div>
           </div>
         </header>
       </Box>

@@ -9,7 +9,11 @@ module.exports = {
       ...defaultTheme.fontFamily,
       ZenKaku: ['Zen Kaku Gothic Antique', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      screens: {
+        xs: '480px',
+      },
+    },
   },
   variants: {
     extend: {},
