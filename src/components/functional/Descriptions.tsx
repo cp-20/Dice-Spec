@@ -27,7 +27,7 @@ export const Descriptions: FC<{ title: string; description: string }> = ({ title
         <meta name="twitter:site" content="@__cp20__" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content="/favicons/icon-256x256.png" />
+        <meta name="twitter:image" content="https://dicespec.vercel.app/favicons/icon-256x256.png" />
       </Head>
     </>
   );
