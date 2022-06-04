@@ -39,7 +39,7 @@ export const LandingLink: FC<{ icon: ReactNode; label: string; href: string }> =
     <StyledLink
       href={href}
       icon={icon}
-      className="rounded-md px-4 py-1 shadow-blue-50  transition-all hover:bg-blue-50 hover:shadow-sm dark:hover:bg-blue-50/5"
+      className="justify-center rounded-md px-4 py-1 shadow-blue-50  transition-all hover:bg-blue-50 hover:shadow-sm dark:hover:bg-blue-50/5"
     >
       {label}
     </StyledLink>
