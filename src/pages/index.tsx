@@ -6,7 +6,8 @@ import { FaFileExport, FaSearch } from 'react-icons/fa';
 
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
-import { LandingCard } from '@/components/model/LandingCard';
+import { LandingCard, LandingCardLink } from '@/components/model/LandingCard';
+import { LandingSection } from '@/components/model/LandingSection';
 
 const Home: NextPage = () => {
   const [t] = useTranslation(['index', 'common']);
@@ -18,27 +19,32 @@ const Home: NextPage = () => {
         <h1 className="py-8 text-center font-ZenKaku text-4xl sm:text-5xl md:text-6xl">{t('common:title')}</h1>
         <p className="text-center">{t('description')}</p>
 
-        <h2 className="mt-16 mb-4 text-center text-xl font-bold">{t('features.title')}</h2>
-        <div className="mt-4 mb-8 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
-          <LandingCard
-            title={t('features.1.title')}
-            content={t('features.1.description')}
+        <LandingSection label={t('functions.title')}>
+          <LandingCardLink
+            title={t('functions.1.title')}
+            content={t('functions.1.description')}
             href="/expect"
             icon={<FaSearch />}
           />
-          <LandingCard
-            title={t('features.2.title')}
-            content={t('features.2.description')}
+          <LandingCardLink
+            title={t('functions.2.title')}
+            content={t('functions.2.description')}
             href="/dice"
             icon={<BsDice5 />}
           />
-          <LandingCard
-            title={t('features.3.title')}
-            content={t('features.3.description')}
+          <LandingCardLink
+            title={t('functions.3.title')}
+            content={t('functions.3.description')}
             href="/ccfolia"
             icon={<FaFileExport />}
           />
-        </div>
+        </LandingSection>
+
+        <LandingSection label={t('features.title')}>
+          <LandingCard title={t('features.1.title')} content={t('features.1.description')} />
+          <LandingCard title={t('features.2.title')} content={t('features.2.description')} />
+          <LandingCard title={t('features.3.title')} content={t('features.3.description')} />
+        </LandingSection>
       </div>
       <Footer />
     </>
