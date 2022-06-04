@@ -10,6 +10,7 @@ import { FaTwitter } from 'react-icons/fa';
 import { Navigation } from '@/components/layout/Navigation';
 import { LanguageSelect } from '@/components/model/LanguageSelect';
 import { StyledLink } from '@/components/ui/StyledLink';
+import { DICESPEC_VERSION } from '@/const/version';
 
 export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
   const [t] = useTranslation('common');
@@ -26,9 +27,12 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
     <>
       <Box shadow="sm" _dark={{ shadow: 'dark-lg' }}>
         <header className="flex py-2 px-4">
-          <StyledLink href="/" className="font-ZenKaku text-lg transition-opacity hover:opacity-60">
-            {t('title')}
-          </StyledLink>
+          <div className="flex flex-col items-center justify-center xs:flex-row xs:space-x-2">
+            <StyledLink href="/" className="font-ZenKaku text-lg transition-opacity hover:opacity-60">
+              {t('title')}
+            </StyledLink>
+            <p>v{DICESPEC_VERSION}</p>
+          </div>
 
           <div className="ml-auto flex flex-col-reverse xs:flex-row xs:items-center xs:space-x-4">
             <div className="mt-2 xs:mt-0">
