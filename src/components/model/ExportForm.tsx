@@ -50,7 +50,7 @@ export const ExportForm: FC = () => {
     color: '#ccc',
     commands: '',
   });
-  const { handleLoadFromClipboard, result } = useExportForm(formData, setFormData);
+  const { handleLoadFromClipboard, handleSaveToClipboard, result } = useExportForm(formData, setFormData);
 
   return (
     <>
@@ -221,12 +221,7 @@ export const ExportForm: FC = () => {
       </FormControl>
 
       <div className="mt-2 mb-8">
-        <Button
-          className="w-full space-x-2"
-          onClick={() => {
-            navigator.clipboard.writeText(result);
-          }}
-        >
+        <Button className="w-full space-x-2" onClick={handleSaveToClipboard}>
           <FaClipboard className="inline" />
           <span>{t('save_to_clipboard')}</span>
         </Button>

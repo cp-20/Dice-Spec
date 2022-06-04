@@ -46,12 +46,34 @@ export const useExportForm = (formData: formData, setFormData: Dispatch<SetState
       });
   };
 
+  const handleSaveToClipboard = () => {
+    navigator.clipboard
+      .writeText(result)
+      .then(() => {
+        toast({
+          title: t('save_to_clipboard_success'),
+          status: 'success',
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+
+        toast({
+          title: t('save_to_clipboard_failure'),
+          status: 'error',
+          isClosable: true,
+        });
+      });
+  };
+
   useEffect(() => {
     setResult(JSON.stringify({ kind: 'character', data: formData }));
   }, [formData]);
 
   return {
     handleLoadFromClipboard,
+    handleSaveToClipboard,
     result,
   };
 };
