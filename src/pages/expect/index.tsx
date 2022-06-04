@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { FaSearch } from 'react-icons/fa';
 
+import { Descriptions } from '@/components/functional/Descriptions';
 import { useCalculation } from '@/components/functional/useCalculation';
 import { IndexLayout } from '@/components/layout/IndexLayout';
 import { ExpectResult } from '@/components/model/ExpectResult';
@@ -13,11 +14,13 @@ import { Inputbox } from '@/components/ui/Inputbox';
 import { calcExpectedValue } from '@/features/parser/expect';
 
 const Home: NextPage = () => {
-  const [t] = useTranslation('expect');
+  const [t] = useTranslation(['expect', 'common']);
   const { inputVal, onInputChange, isAutoCalc, onAutoCalcChange, onSubmit, result } = useCalculation(calcExpectedValue);
 
   return (
     <>
+      <Descriptions title={`${t('title')} - ${t('common:title')}`} description={t('description')} />
+
       <IndexLayout>
         <div className="px-4">
           <H1>

@@ -4,6 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { BsDice5 } from 'react-icons/bs';
 import { FaFileExport, FaGithub, FaSearch, FaTwitter } from 'react-icons/fa';
 
+import { Descriptions } from '@/components/functional/Descriptions';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { LandingCard, LandingCardLink, LandingLink } from '@/components/model/LandingCard';
@@ -11,9 +12,10 @@ import { LandingSection } from '@/components/model/LandingSection';
 
 const Home: NextPage = () => {
   const [t] = useTranslation(['index', 'common']);
-
   return (
     <>
+      <Descriptions title={t('common:title')} description={t('description')} />
+
       <Header isDesktop={true} />
       <div className="min-h-[calc(100vh-5.5rem)] px-4">
         <h1 className="py-8 text-center font-ZenKaku text-4xl sm:text-5xl md:text-6xl">{t('common:title')}</h1>

@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { createContext, useState } from 'react';
 import { BsDice5 } from 'react-icons/bs';
 
+import { Descriptions } from '@/components/functional/Descriptions';
 import { MultiLineBody } from '@/components/functional/MuliLineBody';
 import type { calcResult, successResult } from '@/components/functional/useCalculation';
 import { useCalculation } from '@/components/functional/useCalculation';
@@ -66,7 +67,7 @@ const isPromiseResult = (result: calcResult<PromiseResult | errorResult>): resul
   result ? Object.hasOwn(result, 'result') : false;
 
 const Home: NextPage = () => {
-  const [t] = useTranslation('dice');
+  const [t] = useTranslation(['dice', 'common']);
   const [config, setConfig] = useState(initialConfig);
   const { diceRoll, validator } = useDiceRoll(config);
   const { inputVal, setInputVal, onInputChange, onSubmit, result, setResult } = useCalculation(diceRoll, false);
@@ -119,6 +120,7 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <Descriptions title={`${t('title')} - ${t('common:title')}`} description={t('description')} />
       <configContext.Provider value={{ config, setConfig }}>
         <IndexLayout>
           <div className="px-4">
