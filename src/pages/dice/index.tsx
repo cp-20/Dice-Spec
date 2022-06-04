@@ -151,12 +151,14 @@ const Home: NextPage = () => {
               errorText={t('form.error')}
             />
 
-            <div className="my-4 rounded-md border-2 border-gray-500/10 py-2 px-4">
-              <p className="mb-2 font-bold text-gray-600 dark:text-gray-300">{config.system.name}</p>
-              <Text fontSize="sm">
-                <MultiLineBody body={config.system.help_message} />
-              </Text>
-            </div>
+            {config.help && (
+              <div className="my-4 rounded-md border-2 border-gray-500/10 py-2 px-4">
+                <p className="mb-2 font-bold text-gray-600 dark:text-gray-300">{config.system.name}</p>
+                <Text fontSize="sm">
+                  <MultiLineBody body={config.system.help_message} />
+                </Text>
+              </div>
+            )}
 
             <AdvancedSettings config={config} />
           </div>
