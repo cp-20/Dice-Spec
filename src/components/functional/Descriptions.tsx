@@ -17,7 +17,7 @@ export const Descriptions: FC<{ title: string; description: string }> = ({ title
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://dice-spec.github.io${!locale || locale === 'ja' ? '' : '/' + locale}${pathname}`}
+          content={`https://dicespec.vercel.app${!locale || locale === 'ja' ? '' : '/' + locale}${pathname}`}
         />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={locale ?? 'ja'} />
