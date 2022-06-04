@@ -5,34 +5,27 @@ import {
   AccordionItem,
   AccordionPanel,
   FormControl,
+  IconButton,
   Input,
+  InputGroup,
+  InputRightElement,
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
   Switch,
+  Tooltip,
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import type { FC, ReactNode } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import { FaCog } from 'react-icons/fa';
+import { FaCog, FaUndoAlt } from 'react-icons/fa';
 
 import { FormLabel } from '@/components/ui/FormLabel';
-import { configContext } from '@/pages/dice';
+import { configContext, initialConfig } from '@/pages/dice';
 import type { diceConfig } from '@/typings/diceConfig';
-
-const FormInput: FC<{ children: ReactNode; onChange: (input: string) => void; value: string }> = ({
-  children,
-  onChange,
-  value,
-}) => (
-  <FormControl>
-    <FormLabel>{children}</FormLabel>
-    <Input onChange={(e) => onChange(e.target.value)} value={value} />
-  </FormControl>
-);
 
 const FormSwitch: FC<{ children: ReactNode; onChange: (input: boolean) => void; checked: boolean }> = ({
   children,
@@ -105,12 +98,24 @@ export const AdvancedSettings: FC<{ config: diceConfig }> = ({ config }) => {
               >
                 {t('form.settings.volume')}
               </FormSlider>
-              <FormInput
-                onChange={(input) => setConfig && setConfig({ ...config, apiServer: input })}
-                value={config.apiServer}
-              >
-                {t('form.settings.apiServer')}
-              </FormInput>
+              <FormControl>
+                <FormLabel>{t('form.settings.apiServer')}</FormLabel>
+                <InputGroup>
+                  <Input
+                    onChange={(e) => setConfig && setConfig({ ...config, apiServer: e.target.value })}
+                    value={config.apiServer}
+                  />
+                  <InputRightElement>
+                    <Tooltip label={t('form.settings.apiServer_restore')}>
+                      <IconButton
+                        icon={<FaUndoAlt />}
+                        aria-label={t('form.settings.apiServer_restore')}
+                        onClick={() => setConfig && setConfig({ ...config, apiServer: initialConfig.apiServer })}
+                      />
+                    </Tooltip>
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
             </div>
           </AccordionPanel>
         </AccordionItem>

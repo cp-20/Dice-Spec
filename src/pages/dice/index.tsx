@@ -24,7 +24,7 @@ import { H1 } from '@/components/ui/Heading';
 import { Inputbox } from '@/components/ui/Inputbox';
 import type { diceConfig, jsonDiceConfig } from '@/typings/diceConfig';
 
-const initialConfig: diceConfig = {
+export const initialConfig: diceConfig = {
   apiServer: 'https://bcdice.onlinesession.app',
   system: {
     id: 'DiceBot',
