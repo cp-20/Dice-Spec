@@ -9,13 +9,18 @@ import { useContext } from 'react';
 import { Select } from '@/components/ui/Select';
 import { configContext } from '@/pages/dice';
 import type { BCDice } from '@/typings/bcdice';
+import type { diceConfig } from '@/typings/diceConfig';
 
-export const SystemSelect: FC = () => {
+export const SystemSelect: FC<{ config: diceConfig }> = ({ config }) => {
   const [t] = useTranslation('dice');
   const toast = useToast();
-  const { config, setConfig } = useContext(configContext);
+  const { setConfig } = useContext(configContext);
   const [data, setData] = useState<BCDice.gameSystemResponse | null>(null);
   const active = useRef(config.system.id);
+
+  useEffect(() => {
+    active.current = config.system.id;
+  }, [config]);
 
   useEffect(() => {
     if (data === null) {

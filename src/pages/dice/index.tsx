@@ -131,7 +131,7 @@ const Home: NextPage = () => {
 
             <FormControl className="mt-4 mb-8">
               <FormLabel>{t('form.system')}</FormLabel>
-              <SystemSelect />
+              <SystemSelect config={config} />
             </FormControl>
 
             <DiceResult result={diceResult} />
