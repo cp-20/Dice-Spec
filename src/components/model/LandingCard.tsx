@@ -16,7 +16,7 @@ export const LandingCard: FC<{ title: string; content: string; href: string; ico
           <Link href={href} passHref>
             <LinkOverlay className="text-lg font-bold">{title}</LinkOverlay>
           </Link>
-          <p className="text-gray-600 dark:text-gray-400">{content}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">{content}</p>
         </div>
       </div>
     </LinkBox>
