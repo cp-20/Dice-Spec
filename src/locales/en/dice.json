@@ -1,6 +1,6 @@
 {
   "title": "Dice Roll",
-  "description": "You can roll any die you like, and because it uses BCDice, it is as comfortable to use as a session tool such as CCFOLIA.",
+  "description": "You can roll any dice you like, and because it uses BCDice, it is as comfortable to use as a session tool such as CCFOLIA.",
   "output": "Output",
   "form": {
     "placeholder": "Command",
