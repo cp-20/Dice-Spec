@@ -2,6 +2,7 @@ import { useToast } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 
 import type { parser } from '@/components/functional/useCalculation';
+import { formatInput } from '@/features/utils/formatInput';
 import type { BCDice } from '@/typings/bcdice';
 import type { diceConfig } from '@/typings/diceConfig';
 
@@ -13,8 +14,10 @@ export const useDiceRoll = (config: diceConfig) => {
   const toast = useToast();
 
   const diceRoll: parser<{ result: Promise<diceRollResult | errorResult> }> = (input: string) => {
+    const formatedInput = formatInput(input);
+
     return {
-      result: fetch(`${config.apiServer}/v2/game_system/${config.system.id}/roll?command=${encodeURI(input)}`)
+      result: fetch(`${config.apiServer}/v2/game_system/${config.system.id}/roll?command=${encodeURI(formatedInput)}`)
         .then((res) => res.json())
         .then((res: BCDice.DiceRollResponse): diceRollResult | errorResult => {
           if (res.ok) {
@@ -44,10 +47,12 @@ export const useDiceRoll = (config: diceConfig) => {
   };
 
   const validator = (input: string) => {
-    if (input.length === 0) {
+    const formatedInput = formatInput(input);
+
+    if (formatedInput.length === 0) {
       return null;
     } else {
-      return config.system.command_pattern.test(input);
+      return config.system.command_pattern.test(formatedInput);
     }
   };
 

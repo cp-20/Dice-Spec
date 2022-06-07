@@ -1,6 +1,7 @@
 import peggy from 'peggy';
 
 import parserCode from '@/features/parser/expect.pegjs';
+import { formatInput } from '@/features/utils/formatInput';
 import type { diceAST, expectedValue, operator, resolvedDiceAST } from '@/typings/ast';
 
 const parser = peggy.generate(parserCode);
@@ -103,6 +104,7 @@ const semanticAnalysis = (AST: diceAST): expectedValue => {
 };
 
 export const calcExpectedValue = (input: string): expectedValue => {
-  const AST = parser.parse(input);
+  const formattedInput = formatInput(input);
+  const AST = parser.parse(formattedInput);
   return semanticAnalysis(AST);
 };
