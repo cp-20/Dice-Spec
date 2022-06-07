@@ -104,7 +104,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (config.loaded) {
       const raw_command_pattern = String(config.system.command_pattern);
-      const command_pattern = raw_command_pattern.slice(1).substring(0, raw_command_pattern.lastIndexOf('/'));
+      const command_pattern = raw_command_pattern.slice(1).substring(0, raw_command_pattern.lastIndexOf('/') - 1);
       localStorage.setItem('diceConfig', JSON.stringify({ ...config, system: { ...config.system, command_pattern } }));
     } else {
       const localConfig = localStorage.getItem('diceConfig');
