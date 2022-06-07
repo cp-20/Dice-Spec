@@ -41,7 +41,7 @@
     "react-color": "^2.19.3",
     "react-dom": "18.1.0",
     "react-error-boundary": "3.1.4",
-    "react-icons": "^4.3.1",
+    "react-icons": "^4.4.0",
     "sharp": "^0.30.5",
     "tsc-alias": "^1.6.9",
     "use-sound": "^4.0.1"
