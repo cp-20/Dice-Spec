@@ -15,7 +15,8 @@
     "SD": "Standard Deviation",
     "variance": "Variance",
     "range": "Range",
-    "CI": "Confidence Interval (95%)"
+    "CI": "Confidence Interval (95%)",
+    "CI_tips": "It means that if you do it 100 times, about 95 of those times will be in this range. However, this is not accurate because of the approximations made."
   },
   "usage": {
     "title": "Usage",

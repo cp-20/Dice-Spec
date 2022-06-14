@@ -1,6 +1,7 @@
-import { Stat, StatHelpText, StatLabel, StatNumber } from '@chakra-ui/react';
+import { Stat, StatHelpText, StatLabel, StatNumber, Tooltip } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
+import { FaInfoCircle } from 'react-icons/fa';
 
 import type { expectedValue } from '@/typings/ast';
 
@@ -31,7 +32,14 @@ export const ExpectResult: FC<{ result: calcResult<expectedValue> }> = ({ result
           <StatNumber>{mean}</StatNumber>
         </Stat>
         <Stat>
-          <StatLabel>{t('result.CI')}</StatLabel>
+          <StatLabel>
+            <Tooltip label={t('result.CI_tips')}>
+              <span className="space-x-1">
+                <span>{t('result.CI')}</span>
+                <FaInfoCircle className="inline" />
+              </span>
+            </Tooltip>
+          </StatLabel>
           <StatNumber>{CI}</StatNumber>
           <StatHelpText>{range}</StatHelpText>
         </Stat>
