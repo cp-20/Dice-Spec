@@ -90,8 +90,8 @@ const semanticAnalysis = (AST: diceAST): expectedValue => {
   const { mean, variance, range } = result;
   const SD = Math.sqrt(variance);
   const CI = {
-    min: mean - 1.96 * SD,
-    max: mean + 1.96 * SD,
+    min: Math.max(range.min, mean - 1.96 * SD),
+    max: Math.min(range.max, mean + 1.96 * SD),
   };
 
   return {
