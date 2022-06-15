@@ -27,7 +27,8 @@ const semanticAnalysis = (AST: diceAST): expectedValue => {
           const RV = right.variance;
           if (['+', '-'].includes(AST.operator)) {
             // V(X+Y)=V(X)+V(Y)
-            return calcOperator[AST.operator](LV, RV);
+            // V(X-Y)=V(X)+V(Y)
+            return LV + RV;
           } else if (AST.operator === '*') {
             // V(X*Y)=V(X)*V(Y)+E(X)^2*E(Y)+E(Y)^2*E(X)
             return LV * RV + left.mean ** 2 * RV + right.mean ** 2 * LV;
