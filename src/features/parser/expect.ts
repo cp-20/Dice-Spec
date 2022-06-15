@@ -52,7 +52,7 @@ const semanticAnalysis = (AST: diceAST): expectedValue => {
             // max(X-Y)=max(X)-min(Y)
             return {
               min: calcOperator[AST.operator](left.range.min, right.range.max),
-              max: calcOperator[AST.operator](left.range.min, right.range.max),
+              max: calcOperator[AST.operator](left.range.max, right.range.min),
             };
           }
         })(),
