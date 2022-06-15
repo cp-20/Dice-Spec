@@ -19,11 +19,11 @@ describe('calcExpectedValue', () => {
       expect.objectContaining({
         range: {
           min: 0,
-          max: 7,
+          max: 5,
         },
         CI: {
           min: 0,
-          max: 7,
+          max: 5,
         },
       })
     );
