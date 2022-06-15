@@ -85,14 +85,91 @@ const semanticAnalysis = (AST: diceAST): expectedValue => {
     }
   };
 
+  const diceCombination = (AST: diceAST): number => {
+    if (AST.type === 'operator') {
+      return diceCombination(AST.left) * diceCombination(AST.right);
+    } else if (AST.type === 'dice') {
+      return AST.sides ** AST.dice;
+    } else {
+      return 1;
+    }
+  };
+
+  const rollDiceAST = (AST: diceAST): number => {
+    if (AST.type === 'operator') {
+      const left = rollDiceAST(AST.left);
+      const right = rollDiceAST(AST.right);
+      return calcOperator[AST.operator](left, right);
+    } else if (AST.type === 'dice') {
+      return new Array(AST.dice)
+        .fill(0)
+        .map(() => Math.floor(Math.random() * AST.sides) + 1)
+        .reduce((acc, cur) => acc + cur, 0);
+    } else if (AST.type === 'number') {
+      return AST.value;
+    } else {
+      throw new Error('unknown AST type');
+    }
+  };
+
+  const searchAllWays = (AST: diceAST): number[] => {
+    if (AST.type === 'operator') {
+      const left = searchAllWays(AST.left);
+      const right = searchAllWays(AST.right);
+      return left
+        .map((l) => right.map((r) => calcOperator[AST.operator](l, r)))
+        .reduce((acc, cur) => acc.concat(cur), []);
+    } else if (AST.type === 'dice') {
+      const result: number[] = [];
+
+      for (let indexes = new Array(AST.dice + 1).fill(0); indexes[AST.dice] <= 0; ) {
+        result.push(indexes.reduce((acc, cur) => acc + cur + 1, -1));
+        indexes[0]++;
+        indexes.forEach((val, i) => {
+          if (val === AST.sides) {
+            indexes[i] = 0;
+            indexes[i + 1]++;
+          }
+        });
+      }
+
+      return result;
+    } else if (AST.type === 'number') {
+      return [AST.value];
+    } else {
+      throw new Error('unknown AST type');
+    }
+  };
+
   const result = resolveNode(AST);
 
   const { mean, variance, range } = result;
   const SD = Math.sqrt(variance);
-  const CI = {
-    min: Math.max(range.min, mean - 1.96 * SD),
-    max: Math.min(range.max, mean + 1.96 * SD),
-  };
+
+  const CI = (() => {
+    const rollResult = (() => {
+      if (diceCombination(AST) > 100000) {
+        return new Array(10000).fill(0).map(() => rollDiceAST(AST));
+      } else {
+        return searchAllWays(AST);
+      }
+    })();
+
+    const expectedLength = rollResult.length * 0.95;
+    const step = Math.max(0.1 / Math.max(mean - range.min, range.max - mean), 1e-5);
+
+    for (let d = 1; d >= 0; d -= step) {
+      const dist = rollResult.filter((r) => r >= mean - (mean - range.min) * d && r <= mean + (range.max - mean) * d);
+      if (dist.length <= expectedLength) {
+        return {
+          max: mean + (range.max - mean) * d,
+          min: mean - (mean - range.min) * d,
+        };
+      }
+    }
+
+    return range;
+  })();
 
   return {
     mean,
