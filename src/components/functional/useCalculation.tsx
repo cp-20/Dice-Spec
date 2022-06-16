@@ -5,14 +5,14 @@ export type successResult<T> = T & { error: false };
 
 export type calcResult<T> = { error: true } | successResult<T> | null;
 
-export type parser<T> = (input: string) => T;
+export type parser<T> = (input: string) => T | Promise<T>;
 
-const calculation = <T,>(input: string, parser: parser<T>): calcResult<T> => {
+const calculation = async <T,>(input: string, parser: parser<T>): Promise<calcResult<T>> => {
   if (input.length === 0) {
     return null;
   }
   try {
-    const result = parser(input);
+    const result = await parser(input);
     return {
       ...result,
       error: false,
@@ -33,7 +33,9 @@ export const useCalculation = <T,>(parser: parser<T>, defaultAutoCalc = true) =>
 
   const onSubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    setResult(calculation(inputVal, parser));
+    calculation(inputVal, parser).then((result) => {
+      setResult(result);
+    });
   };
 
   const onInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -43,7 +45,7 @@ export const useCalculation = <T,>(parser: parser<T>, defaultAutoCalc = true) =>
         clearTimeout(timeout);
       }
       timeout = setTimeout(() => {
-        setResult(calculation(e.target.value, parser));
+        calculation(e.target.value, parser).then(setResult);
       }, 500);
     }
   };
