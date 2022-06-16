@@ -58,6 +58,9 @@ const semanticAnalysis = async (AST: diceAST): Promise<expectedValue> => {
         })(),
       };
     } else if (AST.type === 'dice') {
+      if (AST.dice <= 0 || AST.sides <= 0) {
+        throw new Error('invalid dice roll');
+      }
       const mean = (AST.dice * (AST.sides + 1)) / 2;
       const variance = (AST.dice * (AST.sides ** 2 - 1)) / 12;
       const range = {
@@ -126,7 +129,7 @@ const semanticAnalysis = async (AST: diceAST): Promise<expectedValue> => {
         result.push(indexes.reduce((acc, cur) => acc + cur + 1, -1));
         indexes[0]++;
         indexes.forEach((val, i) => {
-          if (val === AST.sides) {
+          if (val >= AST.sides && i < AST.dice) {
             indexes[i] = 0;
             indexes[i + 1]++;
           }
