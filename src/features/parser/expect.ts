@@ -41,21 +41,16 @@ const semanticAnalysis = async (AST: diceAST): Promise<expectedValue> => {
           }
         })(),
         range: (() => {
-          if (['+', '*'].includes(AST.operator)) {
-            // max(X+Y)=max(X)+max(Y)
-            // min(X+Y)=min(X)+min(Y)
-            return {
-              min: calcOperator[AST.operator](left.range.min, right.range.min),
-              max: calcOperator[AST.operator](left.range.max, right.range.max),
-            };
-          } else {
-            // min(X-Y)=min(X)-max(Y)
-            // max(X-Y)=max(X)-min(Y)
-            return {
-              min: calcOperator[AST.operator](left.range.min, right.range.max),
-              max: calcOperator[AST.operator](left.range.max, right.range.min),
-            };
-          }
+          const minmax = [
+            calcOperator[AST.operator](left.range.min, right.range.min),
+            calcOperator[AST.operator](left.range.min, right.range.max),
+            calcOperator[AST.operator](left.range.max, right.range.min),
+            calcOperator[AST.operator](left.range.max, right.range.max),
+          ];
+          return {
+            min: Math.min(...minmax),
+            max: Math.max(...minmax),
+          };
         })(),
       };
     } else if (AST.type === 'dice') {
