@@ -13,7 +13,7 @@ const calcOperator: { [key in operator]: (left: number, right: number) => number
   '/': (left, right) => left / right,
 };
 
-const semanticAnalysis = (AST: diceAST): expectedValue => {
+const semanticAnalysis = async (AST: diceAST): Promise<expectedValue> => {
   const resolveNode = (AST: diceAST): resolvedDiceAST => {
     if (AST.type === 'operator') {
       const left = resolveNode(AST.left);
@@ -148,8 +148,8 @@ const semanticAnalysis = (AST: diceAST): expectedValue => {
 
   const CI = (() => {
     const rollResult = (() => {
-      if (diceCombination(AST) > 100000) {
-        return new Array(10000).fill(0).map(() => rollDiceAST(AST));
+      if (diceCombination(AST) > 10000) {
+        return new Array(1000).fill(0).map(() => rollDiceAST(AST));
       } else {
         return searchAllWays(AST);
       }
@@ -180,7 +180,7 @@ const semanticAnalysis = (AST: diceAST): expectedValue => {
   };
 };
 
-export const calcExpectedValue = (input: string): expectedValue => {
+export const calcExpectedValue = (input: string): Promise<expectedValue> => {
   const formattedInput = formatInput(input);
   const AST = parser.parse(formattedInput);
   return semanticAnalysis(AST);
