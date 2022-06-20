@@ -25,10 +25,12 @@ export type resolvedDiceAST = Omit<
   {
     type: 'resolved';
   } & expectedValue,
-  'CI' | 'SD'
+  'CI' | 'SD' | 'chance'
 >;
 
 export type expectedValue = {
+  // 確率 (possibility)
+  chance?: number;
   // 期待値 (expected value)
   mean: number;
   // 標準偏差 (standard deviation)

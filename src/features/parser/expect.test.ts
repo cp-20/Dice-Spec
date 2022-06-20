@@ -71,5 +71,19 @@ describe('Dice Expecter', () => {
         max: expect.closeTo(4.9, 1),
       },
     });
+    expect(await calcExpectedValue('3 + 5d >= 15')).toEqual({
+      mean: 3 + 3.5 * 5,
+      variance: expect.closeTo(DiceV * 5, 1),
+      SD: expect.closeTo(Math.sqrt(DiceV * 5), 1),
+      range: {
+        min: 8,
+        max: 33,
+      },
+      CI: {
+        min: expect.closeTo(13, 1),
+        max: expect.closeTo(28, 1),
+      },
+      chance: expect.closeTo(0.941, 3),
+    });
   });
 });

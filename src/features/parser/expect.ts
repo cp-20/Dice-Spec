@@ -13,7 +13,11 @@ const calcOperator: { [key in operator]: (left: number, right: number) => number
   '/': (left, right) => left / right,
 };
 
-const semanticAnalysis = async (AST: diceAST): Promise<expectedValue> => {
+const semanticAnalysis = async (
+  AST: diceAST,
+  target: number | null = null,
+  isBigger: boolean | null = null
+): Promise<expectedValue> => {
   const resolveNode = (AST: diceAST): resolvedDiceAST => {
     if (AST.type === 'operator') {
       const left = resolveNode(AST.left);
@@ -145,7 +149,7 @@ const semanticAnalysis = async (AST: diceAST): Promise<expectedValue> => {
   const { mean, variance, range } = result;
   const SD = Math.sqrt(variance);
 
-  const CI = (() => {
+  const { CI, chance } = (() => {
     const rollResult = (() => {
       if (diceCombination(AST) > 10000) {
         return new Array(1000).fill(0).map(() => rollDiceAST(AST));
@@ -157,17 +161,29 @@ const semanticAnalysis = async (AST: diceAST): Promise<expectedValue> => {
     const expectedLength = rollResult.length * 0.95;
     const step = Math.max(0.1 / Math.max(mean - range.min, range.max - mean), 1e-5);
 
-    for (let d = 1; d >= 0; d -= step) {
-      const dist = rollResult.filter((r) => r >= mean - (mean - range.min) * d && r <= mean + (range.max - mean) * d);
-      if (dist.length <= expectedLength) {
-        return {
-          max: mean + (range.max - mean) * d,
-          min: mean - (mean - range.min) * d,
-        };
-      }
-    }
+    const CI = (() => {
+      for (let d = 1; d >= 0; d -= step) {
+        const dist = rollResult.filter((r) => r >= mean - (mean - range.min) * d && r <= mean + (range.max - mean) * d);
 
-    return range;
+        if (dist.length <= expectedLength) {
+          return {
+            max: mean + (range.max - mean) * d,
+            min: mean - (mean - range.min) * d,
+          };
+        }
+      }
+      return range;
+    })();
+
+    const chance =
+      target !== null
+        ? rollResult.filter((r) => (isBigger ? r >= target : r <= target)).length / rollResult.length
+        : undefined;
+
+    return {
+      CI,
+      chance,
+    };
   })();
 
   return {
@@ -176,11 +192,19 @@ const semanticAnalysis = async (AST: diceAST): Promise<expectedValue> => {
     range,
     SD,
     CI,
+    ...(chance ? { chance } : {}),
   };
 };
 
 export const calcExpectedValue = (input: string): Promise<expectedValue> => {
   const formattedInput = formatInput(input);
-  const AST = parser.parse(formattedInput);
-  return semanticAnalysis(AST);
+
+  const match = formattedInput.match(/^([0-9d+-\\*/\s]+)\s*([<>])=\s*([0-9\s]+)$/i);
+  if (match) {
+    const AST = parser.parse(match[1].trim());
+    return semanticAnalysis(AST, parseInt(match[3], 10), match[2] === '>');
+  } else {
+    const AST = parser.parse(formattedInput);
+    return semanticAnalysis(AST);
+  }
 };
