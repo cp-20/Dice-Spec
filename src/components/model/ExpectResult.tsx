@@ -3,9 +3,8 @@ import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
 import { FaInfoCircle } from 'react-icons/fa';
 
+import type { calcResult, successResult } from '@/components/functional/useCalculation';
 import type { expectedValue } from '@/typings/ast';
-
-import type { calcResult, successResult } from '../functional/useCalculation';
 
 const round = (value: number) => Math.round(value * 10) / 10;
 

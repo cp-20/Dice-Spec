@@ -3,10 +3,9 @@ import type { FC } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 
+import { MultiLineBody } from '@/components/functional/MuliLineBody';
 import { cx } from '@/features/utils/cx';
 import { zeroPadding } from '@/features/utils/zeroPadding';
-
-import { MultiLineBody } from '../functional/MuliLineBody';
 
 export type diceResult = {
   system: string;
