@@ -149,7 +149,7 @@ const semanticAnalysis = async (
   const { mean, variance, range } = result;
   const SD = Math.sqrt(variance);
 
-  const { CI, chance } = (() => {
+  const { CI, chance, dist } = (() => {
     const rollResult = (() => {
       if (diceCombination(AST) > 10000) {
         return new Array(1000).fill(0).map(() => rollDiceAST(AST));
@@ -180,9 +180,15 @@ const semanticAnalysis = async (
         ? rollResult.filter((r) => (isBigger ? r >= target : r <= target)).length / rollResult.length
         : undefined;
 
+    const dist: Record<number, number> = {};
+    rollResult.forEach((r) => {
+      dist[r] = dist[r] ? dist[r] + 1 : 1;
+    });
+
     return {
       CI,
       chance,
+      dist,
     };
   })();
 
@@ -192,6 +198,7 @@ const semanticAnalysis = async (
     range,
     SD,
     CI,
+    dist,
     ...(chance !== undefined ? { chance } : {}),
   };
 };

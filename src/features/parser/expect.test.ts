@@ -18,6 +18,14 @@ describe('Dice Expecter', () => {
         min: expect.closeTo(1.1, 1),
         max: expect.closeTo(5.9, 1),
       },
+      dist: {
+        1: 1,
+        2: 1,
+        3: 1,
+        4: 1,
+        5: 1,
+        6: 1,
+      },
     });
     expect(await calcExpectedValue('1d6 + 1d6 - 3')).toEqual({
       mean: 4,
@@ -30,6 +38,19 @@ describe('Dice Expecter', () => {
       CI: {
         min: expect.closeTo(-0.9, 1),
         max: expect.closeTo(8.9, 1),
+      },
+      dist: {
+        [-1]: 1,
+        0: 2,
+        1: 3,
+        2: 4,
+        3: 5,
+        4: 6,
+        5: 5,
+        6: 4,
+        7: 3,
+        8: 2,
+        9: 1,
       },
     });
     expect(await calcExpectedValue('1d6 * 1d6 * 2 + 5')).toEqual({
@@ -44,6 +65,26 @@ describe('Dice Expecter', () => {
         min: expect.closeTo(7, 1),
         max: expect.closeTo(76.9, 1),
       },
+      dist: {
+        11: 2,
+        13: 3,
+        15: 2,
+        17: 4,
+        21: 2,
+        23: 1,
+        25: 2,
+        29: 4,
+        35: 2,
+        37: 1,
+        41: 2,
+        45: 2,
+        53: 2,
+        55: 1,
+        65: 2,
+        7: 1,
+        77: 1,
+        9: 2,
+      },
     });
     expect(await calcExpectedValue('3d6 + 1d100 + 1')).toEqual({
       mean: 3.5 * 3 + 50.5 + 1,
@@ -57,6 +98,7 @@ describe('Dice Expecter', () => {
         min: expect.closeTo(14, 1),
         max: expect.closeTo(110, 1),
       },
+      dist: expect.anything(),
     });
     expect(await calcExpectedValue('6-1d6')).toEqual({
       mean: 6 - 3.5,
@@ -69,6 +111,14 @@ describe('Dice Expecter', () => {
       CI: {
         min: expect.closeTo(0.1, 1),
         max: expect.closeTo(4.9, 1),
+      },
+      dist: {
+        0: 1,
+        1: 1,
+        2: 1,
+        3: 1,
+        4: 1,
+        5: 1,
       },
     });
     expect(await calcExpectedValue('3 + 5d >= 15')).toEqual({
@@ -84,6 +134,7 @@ describe('Dice Expecter', () => {
         max: expect.closeTo(28, 1),
       },
       chance: expect.closeTo(0.941, 3),
+      dist: expect.anything(),
     });
     expect(await calcExpectedValue('3 + 5d <= 14')).toEqual({
       mean: 3 + 3.5 * 5,
@@ -98,6 +149,7 @@ describe('Dice Expecter', () => {
         max: expect.closeTo(28, 1),
       },
       chance: expect.closeTo(1 - 0.941, 3),
+      dist: expect.anything(),
     });
     expect(await calcExpectedValue('1d6 >= 8')).toEqual({
       mean: 3.5,
@@ -112,6 +164,14 @@ describe('Dice Expecter', () => {
         max: expect.closeTo(5.9, 1),
       },
       chance: expect.closeTo(0, 3),
+      dist: {
+        1: 1,
+        2: 1,
+        3: 1,
+        4: 1,
+        5: 1,
+        6: 1,
+      },
     });
   });
 });

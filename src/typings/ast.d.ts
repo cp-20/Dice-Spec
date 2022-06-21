@@ -25,7 +25,7 @@ export type resolvedDiceAST = Omit<
   {
     type: 'resolved';
   } & expectedValue,
-  'CI' | 'SD' | 'chance'
+  'CI' | 'SD' | 'chance' | 'dist'
 >;
 
 export type expectedValue = {
@@ -47,4 +47,6 @@ export type expectedValue = {
     min: number;
     max: number;
   };
+  // 分布 (distribution)
+  dist: Record<number, number>;
 };
