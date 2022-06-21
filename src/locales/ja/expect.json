@@ -11,6 +11,7 @@
   },
   "result": {
     "title": "結果",
+    "chance": "確率",
     "mean": "平均",
     "SD": "標準偏差",
     "variance": "分散",
