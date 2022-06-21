@@ -192,7 +192,7 @@ const semanticAnalysis = async (
     range,
     SD,
     CI,
-    ...(chance ? { chance } : {}),
+    ...(chance !== undefined ? { chance } : {}),
   };
 };
 
