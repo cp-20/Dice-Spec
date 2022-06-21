@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { FaInfoCircle } from 'react-icons/fa';
 
 import type { calcResult, successResult } from '@/components/functional/useCalculation';
+import { DistChart } from '@/components/model/DistChart';
 import type { expectedValue } from '@/typings/ast';
 
 const round = (value: number, digit = 1) => Math.round(value * 10 ** digit) / 10 ** digit;
@@ -66,6 +67,7 @@ export const ExpectResult: FC<{ result: calcResult<expectedValue> }> = ({ result
             <StatNumber>{variance}</StatNumber>
           </Stat>
         </div>
+        {isSuccess(result) && <DistChart result={result}></DistChart>}
       </div>
     </>
   );
