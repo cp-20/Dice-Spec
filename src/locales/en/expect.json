@@ -11,6 +11,7 @@
   },
   "result": {
     "title": "Result",
+    "chance": "Possibility",
     "mean": "Mean",
     "SD": "Standard Deviation",
     "variance": "Variance",
