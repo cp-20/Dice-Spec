@@ -7,7 +7,7 @@ export const InputExamples: FC = () => {
 
   return (
     <>
-      <div className="my-8 border-l-4 pl-2 text-gray-500 dark:text-gray-300">
+      <div className="my-8 border-l-4 pl-2 text-gray-500 dark:text-gray-400">
         <Heading as="h3" size="md" className="py-2">
           {t('inputExample')}
         </Heading>
