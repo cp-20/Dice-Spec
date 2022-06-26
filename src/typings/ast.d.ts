@@ -48,5 +48,5 @@ export type expectedValue = {
     max: number;
   };
   // 分布 (distribution)
-  dist: Record<number, number>;
+  dist: Record<string, number>;
 };

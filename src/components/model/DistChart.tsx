@@ -24,10 +24,7 @@ export const DistChart: FC<{ result: expectedValue }> = ({ result }) => {
             datasets: [
               {
                 label: t('result.chance'),
-                data: (() => {
-                  const resultCount = Object.values(result.dist).reduce((acc, cur) => acc + cur, 0);
-                  return Object.values(result.dist).map((d) => d / resultCount);
-                })(),
+                data: Object.values(result.dist),
                 backgroundColor: 'rgba(43, 108, 176, 0.2)',
                 fill: true,
               },
