@@ -28,7 +28,7 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
       <Box shadow="sm" _dark={{ shadow: 'dark-lg' }}>
         <header className="flex py-2 px-4">
           <div className="flex flex-col items-center justify-center xs:flex-row xs:space-x-2">
-            <StyledLink href="/" className="font-ZenKaku text-lg transition-opacity hover:opacity-60">
+            <StyledLink href="/" className="font-ZenKaku text-lg transition-all hover:opacity-60 dark:hover:opacity-70">
               {t('title')}
             </StyledLink>
             <p>v{DICESPEC_VERSION}</p>
