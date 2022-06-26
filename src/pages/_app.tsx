@@ -1,4 +1,4 @@
-import 'nprogress/nprogress.css';
+import '@/styles/nprogress.css';
 import '@/styles/tailwind.css';
 import '@/styles/twitter-picker.css';
 
