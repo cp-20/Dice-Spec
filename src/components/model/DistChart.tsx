@@ -1,4 +1,3 @@
-import { useMediaQuery } from '@chakra-ui/react';
 import { Chart, registerables } from 'chart.js';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -10,8 +9,6 @@ import type { expectedValue } from '@/typings/ast';
 export const DistChart: FC<{ result: expectedValue }> = ({ result }) => {
   const { locale } = useRouter();
   const [t] = useTranslation('exepct');
-
-  const media = useMediaQuery('(min-width: 500px)');
 
   Chart.register(...registerables);
 
@@ -30,9 +27,9 @@ export const DistChart: FC<{ result: expectedValue }> = ({ result }) => {
               },
             ],
           }}
-          width={100}
-          height={media[0] ? 30 : 50}
+          height={300}
           options={{
+            maintainAspectRatio: false,
             responsive: true,
             plugins: {
               legend: {
