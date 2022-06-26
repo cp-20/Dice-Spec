@@ -67,7 +67,7 @@ export const ExpectResult: FC<{ result: calcResult<expectedValue> }> = ({ result
             <StatNumber>{variance}</StatNumber>
           </Stat>
         </div>
-        {isSuccess(result) && <DistChart result={result}></DistChart>}
+        {isSuccess(result) && <DistChart result={result} />}
       </div>
     </>
   );
