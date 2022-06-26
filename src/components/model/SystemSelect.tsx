@@ -1,82 +1,71 @@
 import { useToast } from '@chakra-ui/react';
+import type GameSystemClass from 'bcdice/lib/game_system';
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
-import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 
+import type { diceAPI } from '@/components/functional/useDiceRoll';
 import { Select } from '@/components/ui/Select';
 import { configContext } from '@/pages/dice';
-import type { BCDice } from '@/typings/bcdice';
 import type { diceConfig } from '@/typings/diceConfig';
 
-export const SystemSelect: FC<{ config: diceConfig }> = ({ config }) => {
+export const SystemSelect: FC<{ config: diceConfig; diceAPI: diceAPI }> = ({ config, diceAPI }) => {
   const [t] = useTranslation('dice');
   const toast = useToast();
   const { setConfig } = useContext(configContext);
-  const [data, setData] = useState<BCDice.gameSystemResponse | null>(null);
   const active = useRef(config.system.id);
+
+  const availableSystems = () => {
+    if (diceAPI.loaded) {
+      const systems = diceAPI.loader.listAvailableGameSystems();
+      systems.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+      return systems;
+    } else {
+      return [];
+    }
+  };
+  const setConfigSystem = (system: GameSystemClass) => {
+    setConfig?.({
+      ...config,
+      system: {
+        id: system.ID,
+        name: system.NAME,
+        command_pattern: new RegExp(system.COMMAND_PATTERN),
+        help_message: system.HELP_MESSAGE,
+      },
+    });
+  };
 
   useEffect(() => {
     active.current = config.system.id;
   }, [config]);
 
-  useEffect(() => {
-    if (data === null) {
-      fetch(config.apiServer + '/v2/game_system', { keepalive: true })
-        .then((res) => res.json())
-        .then((res) => setData(res))
-        .catch((err) => {
-          console.error(err);
-          toast({
-            title: t('errors.notFound'),
-            status: 'error',
-            isClosable: true,
-          });
-        });
-    }
-  }, [config.apiServer, data, t, toast]);
-
   const onChange = (key: string) => {
-    if (setConfig) {
-      fetch(config.apiServer + '/v2/game_system/' + key, { keepalive: true })
-        .then((res) => res.json())
-        .then((res: BCDice.gameSystemInfoResponse) => {
-          if (res.ok) {
-            setConfig({
-              ...config,
-              system: {
-                id: res.id,
-                name: res.name,
-                command_pattern: new RegExp(res.command_pattern),
-                help_message: res.help_message,
-              },
-            });
-          } else {
-            toast({
-              title: t('errors.other'),
-              status: 'error',
-              isClosable: true,
-            });
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          toast({
-            title: t('errors.notFound'),
-            status: 'error',
-            isClosable: true,
-          });
+    if (diceAPI.loaded) {
+      if (diceAPI.loader.listLoadedGameSystems().find((system) => system.ID === key) !== undefined) {
+        const system = diceAPI.loader.getGameSystemClass(key);
+        setConfigSystem(system);
+      } else {
+        diceAPI.loader.dynamicLoad(key).then((system) => {
+          setConfigSystem(system);
         });
+      }
+    } else {
+      toast({
+        title: t('errors.notLoaded'),
+        status: 'error',
+        isClosable: true,
+      });
     }
   };
 
   return (
     <>
-      {data ? (
+      {diceAPI.loaded ? (
         <Select
-          items={data.game_system.map((item) => ({ key: item.id, value: item.name }))}
+          items={availableSystems().map((item) => ({ key: item.id, value: item.name }))}
           active={active}
           onChange={onChange}
         />

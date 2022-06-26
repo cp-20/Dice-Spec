@@ -26,6 +26,7 @@
   },
   "errors": {
     "notFound": "BCDice APIサーバーが見つかりません。BCDice APIサーバーのURLを設定してください。",
+    "notLoaded": "まだロードされていません",
     "other": "エラーが発生しました。"
   }
 }

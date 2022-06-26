@@ -18,6 +18,7 @@
   },
   "errors": {
     "notFound": "BCDice API server not found, please set the URL of the BCDice API server.",
+    "notLoaded": "Not loaded yet",
     "other": "An error has occurred."
   }
 }

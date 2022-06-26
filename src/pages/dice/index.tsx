@@ -11,7 +11,7 @@ import { Descriptions } from '@/components/functional/Descriptions';
 import { MultiLineBody } from '@/components/functional/MuliLineBody';
 import type { calcResult, successResult } from '@/components/functional/useCalculation';
 import { useCalculation } from '@/components/functional/useCalculation';
-import type { diceRollResult, errorResult } from '@/components/functional/useDiceRoll';
+import type { parserResult } from '@/components/functional/useDiceRoll';
 import { useDiceRoll } from '@/components/functional/useDiceRoll';
 import { useDiceSound } from '@/components/functional/useDiceSound';
 import { IndexLayout } from '@/components/layout/IndexLayout';
@@ -61,15 +61,15 @@ export const configContext = createContext<{
   setConfig: null,
 });
 
-type PromiseResult = successResult<{ result: Promise<errorResult | diceRollResult> }>;
+type PromiseResult = successResult<parserResult>;
 
-const isPromiseResult = (result: calcResult<PromiseResult | errorResult>): result is PromiseResult =>
+const isPromiseResult = (result: calcResult<parserResult>): result is PromiseResult =>
   result ? Object.hasOwn(result, 'result') : false;
 
 const Home: NextPage = () => {
   const [t] = useTranslation(['dice', 'common']);
   const [config, setConfig] = useState(initialConfig);
-  const { diceRoll, validator } = useDiceRoll(config);
+  const { diceRoll, validator, diceAPI } = useDiceRoll(config);
   const { inputVal, setInputVal, onInputChange, onSubmit, result, setResult } = useCalculation(diceRoll, false);
   const [isInvalid, setIsInvalid] = useState(false);
   const [diceResult, setDiceResult] = useState<diceResult[]>([]);
@@ -85,7 +85,7 @@ const Home: NextPage = () => {
             const rollResult: diceResult = {
               date: new Date(),
               system: config.system.name,
-              success: result.result.success || result.result.critiacl,
+              success: result.result.success || result.result.critical,
               failure: result.result.failure || result.result.fumble,
               text: result.result.text,
             };
@@ -133,7 +133,7 @@ const Home: NextPage = () => {
 
             <FormControl className="mt-4 mb-8">
               <FormLabel>{t('form.system')}</FormLabel>
-              <SystemSelect config={config} />
+              <SystemSelect config={config} diceAPI={diceAPI} />
             </FormControl>
 
             <DiceResult result={diceResult} />

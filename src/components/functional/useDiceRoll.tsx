@@ -1,49 +1,85 @@
 import { useToast } from '@chakra-ui/react';
+import type { DynamicLoader } from 'bcdice';
+import type Result from 'bcdice/lib/result';
 import { useTranslation } from 'next-i18next';
+import { useEffect, useState } from 'react';
 
 import type { parser } from '@/components/functional/useCalculation';
 import { formatInput } from '@/features/utils/formatInput';
-import type { BCDice } from '@/typings/bcdice';
 import type { diceConfig } from '@/typings/diceConfig';
 
-export type diceRollResult = { success: true; result: BCDice.DiceRollSuccessResponse };
+export type diceRollResult = { success: true; result: Result };
 export type errorResult = { success: false };
+
+export type parserResult = { result: Promise<diceRollResult | errorResult> };
+
+export type diceAPI =
+  | {
+      loaded: false;
+    }
+  | {
+      loaded: true;
+      loader: DynamicLoader;
+      version: string;
+    };
 
 export const useDiceRoll = (config: diceConfig) => {
   const [t] = useTranslation('dice');
   const toast = useToast();
+  const [diceAPI, setDiceAPI] = useState<diceAPI>({ loaded: false });
 
-  const diceRoll: parser<{ result: Promise<diceRollResult | errorResult> }> = (input: string) => {
-    const formatedInput = formatInput(input);
+  useEffect(() => {
+    import('bcdice').then((dice) => {
+      console.log('bcdice loaded');
+      setDiceAPI({
+        loaded: true,
+        loader: new dice.DynamicLoader(),
+        version: dice.Version,
+      });
+    });
+  }, []);
 
-    return {
-      result: fetch(`${config.apiServer}/v2/game_system/${config.system.id}/roll?command=${encodeURI(formatedInput)}`)
-        .then((res) => res.json())
-        .then((res: BCDice.DiceRollResponse): diceRollResult | errorResult => {
-          if (res.ok) {
-            return {
-              success: true,
-              result: res,
-            };
-          } else {
-            return {
-              success: false,
-            };
-          }
-        })
-        .catch((err) => {
-          console.error(err);
+  const diceRoll: parser<parserResult> = (input) => {
+    const formattedInput = formatInput(input);
 
-          toast({
-            title: t('errors.notFound'),
-            status: 'error',
-            isClosable: true,
-          });
-          return {
-            success: false,
-          };
-        }),
-    };
+    if (diceAPI.loaded) {
+      console.time('diceRoll');
+      return {
+        result: diceAPI.loader
+          .dynamicLoad(config.system.id)
+          .then((system) => {
+            const result = system.eval(formattedInput);
+
+            console.timeEnd('diceRoll');
+            if (result === null) {
+              toast({
+                title: t('errors.other'),
+                status: 'error',
+                isClosable: true,
+              });
+              return { success: false } as errorResult;
+            } else {
+              return { success: true, result };
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            toast({
+              title: t('errors.other'),
+              status: 'error',
+              isClosable: true,
+            });
+            return { success: false };
+          }),
+      };
+    } else {
+      toast({
+        title: t('errors.notLoaded'),
+        status: 'error',
+        isClosable: true,
+      });
+      return { result: Promise.resolve({ success: false }) };
+    }
   };
 
   const validator = (input: string) => {
@@ -59,5 +95,6 @@ export const useDiceRoll = (config: diceConfig) => {
   return {
     diceRoll,
     validator,
+    diceAPI,
   };
 };
