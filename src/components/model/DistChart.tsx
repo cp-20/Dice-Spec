@@ -12,16 +12,24 @@ export const DistChart: FC<{ result: expectedValue }> = ({ result }) => {
 
   Chart.register(...registerables);
 
+  const { values, chances } = (() => {
+    const values = Object.keys(result.dist);
+    values.sort((a, b) => Number(a) - Number(b));
+    const chances = values.map((value) => result.dist[value]);
+
+    return { values, chances };
+  })();
+
   return (
     <>
       <div className="!mt-4">
         <Line
           data={{
-            labels: Object.keys(result.dist),
+            labels: values,
             datasets: [
               {
                 label: t('result.chance'),
-                data: Object.values(result.dist),
+                data: chances,
                 backgroundColor: 'rgba(43, 108, 176, 0.2)',
                 fill: true,
               },
