@@ -12,12 +12,44 @@ export const DistChart: FC<{ result: expectedValue }> = ({ result }) => {
 
   Chart.register(...registerables);
 
-  const { values, chances } = (() => {
+  const { values, chances, chancesCI, chancesTarget } = (() => {
     const values = Object.keys(result.dist);
     values.sort((a, b) => Number(a) - Number(b));
-    const chances = values.map((value) => result.dist[value]);
+    const chances: (number | null)[] = [];
+    const chancesCI: (number | null)[] = [];
+    const chancesTarget: (number | null)[] = [];
 
-    return { values, chances };
+    let beforeChance: (number | null)[] = [null, null, null];
+    values.forEach((value) => {
+      const chance = result.dist[value];
+      const isUseCurrentChance = (() => {
+        if (
+          result.input.target &&
+          (result.input.isBigger ? result.input.target <= Number(value) : Number(value) <= result.input.target)
+        ) {
+          return [false, false, true];
+        } else if (result.CI.min <= Number(value) && Number(value) <= result.CI.max) {
+          return [false, true, false];
+        } else {
+          return [true, false, false];
+        }
+      })();
+
+      const current = isUseCurrentChance.map((isUse, i) => {
+        if (isUse || beforeChance[i] !== null) {
+          return chance;
+        } else {
+          return null;
+        }
+      });
+      beforeChance = isUseCurrentChance.map((isUse) => (isUse ? chance : null));
+
+      chances.push(current[0]);
+      chancesCI.push(current[1]);
+      chancesTarget.push(current[2]);
+    });
+
+    return { values, chances, chancesCI, chancesTarget };
   })();
 
   return (
@@ -30,7 +62,19 @@ export const DistChart: FC<{ result: expectedValue }> = ({ result }) => {
               {
                 label: t('result.chance'),
                 data: chances,
-                backgroundColor: 'rgba(43, 108, 176, 0.2)',
+                backgroundColor: 'rgba(43, 108, 176, 0.3)',
+                fill: true,
+              },
+              {
+                label: t('result.CI'),
+                data: chancesCI,
+                backgroundColor: 'rgba(43, 108, 176, 0.5)',
+                fill: true,
+              },
+              {
+                label: t('result.chance'),
+                data: chancesTarget,
+                backgroundColor: 'rgba(255, 0, 0, 0.2)',
                 fill: true,
               },
             ],

@@ -188,6 +188,10 @@ const semanticAnalysis = async (
   })();
 
   return {
+    input: {
+      isBigger,
+      target,
+    },
     mean,
     variance,
     range,

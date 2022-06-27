@@ -25,10 +25,17 @@ export type resolvedDiceAST = Omit<
   {
     type: 'resolved';
   } & expectedValue,
-  'CI' | 'SD' | 'chance' | 'dist'
+  'CI' | 'SD' | 'chance' | 'dist' | 'input'
 >;
 
 export type expectedValue = {
+  // 入力
+  input: {
+    // true: >=, false: <=
+    isBigger: boolean | null;
+    // 目標の数字
+    target: number | null;
+  };
   // 確率 (possibility)
   chance?: number;
   // 期待値 (expected value)
