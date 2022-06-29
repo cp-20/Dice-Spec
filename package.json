@@ -72,7 +72,7 @@
     "eslint-plugin-simple-import-sort": "7.0.0",
     "eslint-plugin-tailwindcss": "^3.6.0",
     "husky": "^8.0.1",
-    "jest": "^28.1.1",
+    "jest": "^28.1.2",
     "lint-staged": "13.0.3",
     "postcss": "^8.4.5",
     "prettier": "2.7.1",
