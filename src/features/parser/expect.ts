@@ -125,12 +125,10 @@ const semanticAnalysis = async (
         for (let j = 0; j < dice * sides; j++) {
           if (j < sides) {
             sum += dp[i - 1][j];
-            dp[i][j] += sum / sides;
           } else {
-            sum -= dp[i - 1][j - sides];
-            sum += dp[i - 1][j];
-            dp[i][j] += sum / sides;
+            sum = sum - dp[i - 1][j - sides] + dp[i - 1][j];
           }
+          dp[i][j] += sum / sides;
         }
       }
 
