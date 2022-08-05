@@ -31,7 +31,7 @@
     "compression": "^1.7.4",
     "dotenv": "^16.0.1",
     "express": "^4.17.2",
-    "framer-motion": "^6",
+    "framer-motion": "^7",
     "license-checker": "^25.0.1",
     "monaco-editor": "^0.33.0",
     "next": "12.2.4",
