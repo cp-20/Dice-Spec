@@ -34,7 +34,7 @@
     "framer-motion": "^6",
     "license-checker": "^25.0.1",
     "monaco-editor": "^0.33.0",
-    "next": "12.2.4",
+    "next": "12.2.5",
     "next-i18next": "^11.3.0",
     "nprogress": "0.2.0",
     "peggy": "^2.0.1",
