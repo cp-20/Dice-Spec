@@ -33,7 +33,7 @@
     "express": "^4.17.2",
     "framer-motion": "^7",
     "license-checker": "^25.0.1",
-    "monaco-editor": "^0.33.0",
+    "monaco-editor": "^0.34.0",
     "next": "12.2.5",
     "next-i18next": "^12.0.0",
     "nprogress": "0.2.0",
