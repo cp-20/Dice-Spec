@@ -1,11 +1,7 @@
-import peggy from 'peggy';
-
-import parserCode from '@/features/parser/expect.pegjs';
+import { parser } from '@/features/parser/parser';
 import { formatInput } from '@/features/utils/formatInput';
 import { generate2DArray } from '@/features/utils/init2DArray';
 import type { diceAST, expectedValue, operator, resolvedDiceAST } from '@/typings/ast';
-
-const parser = peggy.generate(parserCode);
 
 const calcOperator: { [key in operator]: (left: number, right: number) => number } = {
   '+': (left, right) => left + right,
