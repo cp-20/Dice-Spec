@@ -9,7 +9,12 @@ const localeSubpaths = {};
 /** @type {import('next').NextConfig} */
 module.exports = withBundleAnalyzer({
   webpack: (config, { webpack }) => {
-    config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
+    config.plugins.push(
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/,
+      })
+    );
     return config;
   },
   i18n,
