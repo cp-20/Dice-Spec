@@ -8,7 +8,8 @@ const localeSubpaths = {};
 
 /** @type {import('next').NextConfig} */
 module.exports = withBundleAnalyzer({
-  webpack: (config) => {
+  webpack: (config, { webpack }) => {
+    config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
     return config;
   },
   i18n,
