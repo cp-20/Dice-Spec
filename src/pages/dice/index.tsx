@@ -48,7 +48,7 @@ D66 ： D66ダイス。順序はゲームに依存。D66N：そのまま、D66A�
 https://docs.bcdice.org/`,
   },
   help: true,
-  sound: true,
+  sound: false,
   volume: 50,
   loaded: false,
 };
