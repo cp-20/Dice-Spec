@@ -43,7 +43,7 @@
     "use-sound": "^4.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.0",
+    "@babel/core": "^7.19.1",
     "@testing-library/dom": "^8.17.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
