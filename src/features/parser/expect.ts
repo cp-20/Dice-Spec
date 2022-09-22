@@ -1,4 +1,4 @@
-import { parser } from '@/features/parser/parser';
+import parser from '@/features/parser/parser';
 import { formatInput } from '@/features/utils/formatInput';
 import { generate2DArray } from '@/features/utils/init2DArray';
 import type { diceAST, expectedValue, operator, resolvedDiceAST } from '@/typings/ast';

@@ -1,3 +1,6 @@
 import type { Parser } from 'peggy';
 
-export const parser: Parser;
+const parser: Parser;
+
+// eslint-disable-next-line import/no-default-export
+export default parser;
