@@ -5,6 +5,8 @@ import { calcExpectedValue } from '@/features/parser/expect';
 const apiHandler: NextApiHandler = async (req, res) => {
   const query = req.query.query;
 
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
   if (typeof query !== 'string') {
     res.status(400).json({
       ok: false,
