@@ -13,12 +13,19 @@ const apiHandler: NextApiHandler = async (req, res) => {
     return;
   }
 
-  const result = await calcExpectedValue(query);
+  try {
+    const result = await calcExpectedValue(query);
 
-  res.status(200).json({
-    ok: true,
-    result,
-  });
+    res.status(200).json({
+      ok: true,
+      result,
+    });
+  } catch (err) {
+    res.status(400).json({
+      ok: false,
+      reason: 'your query is not valid',
+    });
+  }
 };
 
 export default apiHandler;
