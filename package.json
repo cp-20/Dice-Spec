@@ -28,7 +28,7 @@
     "@next/bundle-analyzer": "^12.3.1",
     "chart.js": "^3.9.1",
     "framer-motion": "^7",
-    "next": "12.3.1",
+    "next": "13.0.3",
     "next-i18next": "^11.3.0",
     "nprogress": "0.2.0",
     "peggy": "^2.0.1",
