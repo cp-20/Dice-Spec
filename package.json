@@ -22,7 +22,7 @@
     "printWidth": 120
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.3.7",
+    "@chakra-ui/react": "^2.4.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@next/bundle-analyzer": "^12.3.1",
