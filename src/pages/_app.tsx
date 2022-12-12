@@ -3,6 +3,7 @@ import '@/styles/tailwind.css';
 import '@/styles/twitter-picker.css';
 
 import { ChakraProvider } from '@chakra-ui/react';
+import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import nprogress from 'nprogress';
@@ -28,6 +29,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       {googleTagManagerId && <GoogleTagManager googleTagManagerId={googleTagManagerId as GoogleTagManagerId} />}
       <ChakraProvider theme={customTheme}>
         <Component {...pageProps}></Component>
+        <Analytics />
       </ChakraProvider>
     </>
   );
