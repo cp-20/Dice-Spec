@@ -39,5 +39,9 @@
     "title": "関連リンク",
     "twitter": "開発者のついったー",
     "github": "GitHubのリポジトリ"
+  },
+
+  "credit": {
+    "title": "クレジット"
   }
 }

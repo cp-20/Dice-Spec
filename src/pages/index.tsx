@@ -11,6 +11,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { LandingCard, LandingCardLink, LandingLink } from '@/components/model/LandingCard';
 import { LandingSection } from '@/components/model/LandingSection';
+import { StyledLink } from '@/components/ui/StyledLink';
 
 const Home: NextPage = () => {
   const [t] = useTranslation(['index', 'common']);
@@ -60,6 +61,12 @@ const Home: NextPage = () => {
         <LandingSection label={t('links.title')}>
           <LandingLink href="https://twitter.com/__cp20__" icon={<FaTwitter />} label={t('links.twitter')} />
           <LandingLink href="https://github.com/cp-20/Dice-Spec" icon={<FaGithub />} label={t('links.github')} />
+        </LandingSection>
+
+        <LandingSection label={t('credit.title')}>
+          <StyledLink href="https://www.flaticon.com/free-icons/dice" icon="none" className="underline">
+            Dice icons created by Tanah Basah - Flaticon
+          </StyledLink>
         </LandingSection>
       </div>
 

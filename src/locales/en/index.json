@@ -39,5 +39,9 @@
     "title": "Related Links",
     "twitter": "Developer's Twitter",
     "github": "GitHub Repository"
+  },
+
+  "credit": {
+    "title": "Credit"
   }
 }
