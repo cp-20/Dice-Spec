@@ -24,7 +24,7 @@ export const Descriptions: FC<{ title: string; description: string }> = ({ title
         <meta property="og:image" content="https://dicespec.vercel.app/ogp.png" />
 
         {/* Twitter Card */}
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@__cp20__" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
