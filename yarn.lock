@@ -5399,10 +5399,10 @@ semver@^6.0.0, semver@^6.3.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
-sharp@^0.31.2:
-  version "0.31.2"
-  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.31.2.tgz#a8411c80512027f5a452b76d599268760c4e5dfa"
-  integrity sha512-DUdNVEXgS5A97cTagSLIIp8dUZ/lZtk78iNVZgHdHbx1qnQR7JAHY0BnXnwwH39Iw+VKhO08CTYhIg0p98vQ5Q==
+sharp@^0.31.3:
+  version "0.31.3"
+  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.31.3.tgz#60227edc5c2be90e7378a210466c99aefcf32688"
+  integrity sha512-XcR4+FCLBFKw1bdB+GEhnUNXNXvnt0tDo4WsBsraKymuo/IAuPuCBVAL2wIkUw2r/dwFW5Q5+g66Kwl2dgDFVg==
   dependencies:
     color "^4.2.3"
     detect-libc "^2.0.1"
