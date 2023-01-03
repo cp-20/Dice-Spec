@@ -2,6 +2,7 @@ import { randomBytes } from 'crypto';
 import type { DocumentContext } from 'next/document';
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 
+import { adsenseClientId, GoogleAdsense } from '@/components/functional/GoogleAdsense';
 import { googleTagManagerId } from '@/components/functional/GoogleTagManager';
 
 type WithNonceProp = {
@@ -84,6 +85,9 @@ class Document extends NextDocument<WithNonceProp> {
           <link rel="icon" type="image/png" sizes="24x24" href="favicons/icon-24x24.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="favicons/icon-32x32.png" />
           <link rel="manifest" href="favicons/manifest.json" />
+
+          {/* Google Adsense */}
+          {adsenseClientId && <GoogleAdsense clientId={adsenseClientId} />}
         </Head>
         <body>
           <noscript>
