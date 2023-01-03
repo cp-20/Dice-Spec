@@ -1,12 +1,8 @@
 import Script from 'next/script';
 
-export type GoogleTagManagerId = `GTM-${string}`;
-
-type Props = {
-  googleTagManagerId: GoogleTagManagerId;
-};
-
-export const GoogleTagManager: React.FC<Props> = ({ googleTagManagerId }) => {
+export const GoogleTagManager: React.FC<{
+  googleTagManagerId: string;
+}> = ({ googleTagManagerId }) => {
   return (
     <Script
       id="gtm"
@@ -24,4 +20,4 @@ export const GoogleTagManager: React.FC<Props> = ({ googleTagManagerId }) => {
   );
 };
 
-export const googleTagManagerId = process.env.GTM_ID || '';
+export const googleTagManagerId = process.env.NEXT_PUBLIC_GTM_ID || '';
