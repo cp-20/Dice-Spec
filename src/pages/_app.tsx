@@ -9,6 +9,7 @@ import { appWithTranslation } from 'next-i18next';
 import nprogress from 'nprogress';
 import { useEffect } from 'react';
 
+import { adsenseClientId, GoogleAdsense } from '@/components/functional/GoogleAdsense';
 import type { GoogleTagManagerId } from '@/components/functional/GoogleTagManager';
 import { GoogleTagManager, googleTagManagerId } from '@/components/functional/GoogleTagManager';
 import { customTheme } from '@/features/theme/theme';
@@ -27,6 +28,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       {googleTagManagerId && <GoogleTagManager googleTagManagerId={googleTagManagerId as GoogleTagManagerId} />}
+      {adsenseClientId && <GoogleAdsense clientId={adsenseClientId} />}
       <ChakraProvider theme={customTheme}>
         <Component {...pageProps}></Component>
         <Analytics />
