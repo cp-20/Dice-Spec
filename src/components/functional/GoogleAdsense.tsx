@@ -10,4 +10,4 @@ export const GoogleAdsense: React.FC<{ clientId: string }> = ({ clientId }) => {
   );
 };
 
-export const adsenseClientId = process.env.NEXT_PUCLIC_ADSENSE_CLIENT_ID || '';
+export const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || '';
