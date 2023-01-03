@@ -5,12 +5,10 @@ import '@/styles/twitter-picker.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 import nprogress from 'nprogress';
 import { useEffect } from 'react';
 
-import { adsenseClientId, GoogleAdsense } from '@/components/functional/GoogleAdsense';
 import { GoogleTagManager, googleTagManagerId } from '@/components/functional/GoogleTagManager';
 import { customTheme } from '@/features/theme/theme';
 
@@ -27,7 +25,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Head>{adsenseClientId && <GoogleAdsense clientId={adsenseClientId} />}</Head>
       {googleTagManagerId && <GoogleTagManager googleTagManagerId={googleTagManagerId} />}
       <ChakraProvider theme={customTheme}>
         <Component {...pageProps}></Component>
