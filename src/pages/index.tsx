@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { BsDice5 } from 'react-icons/bs';
-import { FaFileExport, FaGithub, FaSearch, FaTwitter } from 'react-icons/fa';
+import { FaDiscord, FaFileExport, FaGithub, FaSearch, FaTwitter } from 'react-icons/fa';
 
 import { Descriptions } from '@/components/functional/Descriptions';
 import { Footer } from '@/components/layout/Footer';
@@ -59,6 +59,7 @@ const Home: NextPage = () => {
         </LandingSection>
 
         <LandingSection label={t('links.title')}>
+          <LandingLink href="https://discord.gg/YQ7negGTUK" icon={<FaDiscord />} label={t('links.discord')} />
           <LandingLink href="https://twitter.com/__cp20__" icon={<FaTwitter />} label={t('links.twitter')} />
           <LandingLink href="https://github.com/cp-20/Dice-Spec" icon={<FaGithub />} label={t('links.github')} />
         </LandingSection>
