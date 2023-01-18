@@ -26,15 +26,15 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
     <>
       <Box shadow="sm" _dark={{ shadow: 'dark-lg' }}>
         <header className="flex py-2 px-4">
-          <div className="flex flex-col items-center justify-center xs:flex-row xs:space-x-2">
+          <div className="flex flex-col items-center justify-center sm:flex-row sm:space-x-2">
             <StyledLink href="/" className="font-ZenKaku text-lg transition-all hover:opacity-60 dark:hover:opacity-70">
               {t('title')}
             </StyledLink>
             <p>v{DICESPEC_VERSION}</p>
           </div>
 
-          <div className="ml-auto flex flex-col-reverse xs:flex-row xs:items-center xs:space-x-4">
-            <div className="mt-2 xs:mt-0">
+          <div className="ml-auto flex flex-col-reverse sm:flex-row sm:items-center sm:space-x-4">
+            <div className="mt-2 sm:mt-0">
               {/* change languages */}
 
               <LanguageSelect />
