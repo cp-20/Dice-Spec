@@ -4,8 +4,7 @@ import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
-import { FaBars, FaMoon, FaSun } from 'react-icons/fa';
-import { FaTwitter } from 'react-icons/fa';
+import { FaBars, FaDiscord, FaMoon, FaSun, FaTwitter } from 'react-icons/fa';
 
 import { Navigation } from '@/components/layout/Navigation';
 import { LanguageSelect } from '@/components/model/LanguageSelect';
@@ -42,6 +41,16 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
             </div>
 
             <div className="flex justify-end space-x-4">
+              {/* Support Community */}
+              <Tooltip label={t('header.discord')}>
+                <IconButton
+                  size="sm"
+                  icon={<FaDiscord title={t('header.discord')} />}
+                  onClick={() => window.open('https://discord.gg/YQ7negGTUK', '_blank')}
+                  aria-label={t('header.discord')}
+                />
+              </Tooltip>
+
               {/* Developer's Twitter */}
               <Tooltip label={t('header.twitter')}>
                 <IconButton
