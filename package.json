@@ -25,7 +25,7 @@
     "@chakra-ui/react": "2.5.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@next/bundle-analyzer": "^13.1.6",
+    "@next/bundle-analyzer": "^13.2.1",
     "@vercel/analytics": "^0.1.11",
     "chart.js": "^3.9.1",
     "framer-motion": "^9",
