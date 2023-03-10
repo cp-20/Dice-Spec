@@ -28,7 +28,7 @@
     "@next/bundle-analyzer": "^13.1.6",
     "@vercel/analytics": "^0.1.11",
     "chart.js": "^3.9.1",
-    "framer-motion": "^9",
+    "framer-motion": "^10",
     "next": "12.3.1",
     "next-i18next": "^12.1.0",
     "nprogress": "0.2.0",
