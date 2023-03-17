@@ -13,7 +13,8 @@
   "navigation": {
     "expect": "Dice Expecter",
     "dice": "Dice Roll",
-    "ccfolia": "CCFOLIA Export"
+    "ccfolia": "CCFOLIA Export",
+    "analyze": "Log Analysis"
   },
 
   "inputExample": "Input Examples",

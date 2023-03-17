@@ -1,0 +1,14 @@
+{
+  "title": "Log Analysis",
+  "description": "Analyzes logs output from Cocoforia to extract and analyze rolls of the dice.",
+
+  "upload": "Click to upload or drag and drop to upload",
+
+  "log_preview_empty": "No logs existed for the corresponding character.",
+
+  "result": {
+    "mean": "Mean",
+    "variance": "Dispersion",
+    "SD": "Standard deviation"
+  }
+}

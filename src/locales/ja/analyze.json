@@ -1,0 +1,16 @@
+{
+  "title": "ログ解析",
+  "description": "ココフォリアから出力されたログを解析して、ダイスの出目を抽出・分析します。",
+
+  "upload": "クリックしてアップロード、あるいはドラッグアンドドロップしてアップロード",
+  "upload_type_error_title": "アップロードに失敗しました",
+  "upload_type_error_description": "HTMLファイルのみアップロード可能です",
+
+  "log_preview_empty": "該当するキャラのログは存在しませんでした",
+
+  "result": {
+    "mean": "平均",
+    "variance": "分散",
+    "SD": "標準偏差"
+  }
+}

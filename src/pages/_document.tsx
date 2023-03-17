@@ -89,7 +89,7 @@ class Document extends NextDocument<WithNonceProp> {
           {/* Google Adsense */}
           {adsenseClientId && <GoogleAdsense clientId={adsenseClientId} />}
         </Head>
-        <body>
+        <body className="overflow-hidden">
           <noscript>
             <iframe
               className="invisible hidden"

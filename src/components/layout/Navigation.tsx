@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
 import { BsDice5 } from 'react-icons/bs';
 import { FaFileExport, FaSearch } from 'react-icons/fa';
+import { IoAnalytics } from 'react-icons/io5';
 
 import type { StyledLinkProps } from '@/components/ui/StyledLink';
 import { StyledLink } from '@/components/ui/StyledLink';
@@ -40,6 +41,9 @@ export const Navigation: FC = () => {
         </NavigationLink>
         <NavigationLink href="/ccfolia" icon={<FaFileExport className="inline" />}>
           {t('navigation.ccfolia')}
+        </NavigationLink>
+        <NavigationLink href="/analyze-logs" icon={<IoAnalytics className="inline" />}>
+          {t('navigation.analyze')}
         </NavigationLink>
       </div>
     </>
