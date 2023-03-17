@@ -1,7 +1,9 @@
+import type { ChartOptions } from 'chart.js';
 import { BarController, BarElement, CategoryScale, Chart as ChartJS, LinearScale } from 'chart.js';
-import { useRouter } from 'next/router';
-import type { ComponentProps, FC } from 'react';
+import type { FC } from 'react';
 import { Bar, Chart } from 'react-chartjs-2';
+
+import { useChartOptions } from '@/components/functional/useChartOptions';
 
 ChartJS.register(BarController, CategoryScale, LinearScale, BarElement);
 
@@ -11,21 +13,7 @@ export type analysisChartsProps = {
 };
 
 export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumber, compiledDiceResult }) => {
-  const { locale } = useRouter();
-
-  const commonOptions: ComponentProps<typeof Bar>['options'] = {
-    maintainAspectRatio: false,
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        enabled: false,
-      },
-    },
-    locale,
-  };
+  const commonOptions = useChartOptions();
 
   return (
     <div className="flex flex-col gap-4">
@@ -61,7 +49,7 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
             ],
           }}
           height={300}
-          options={{ ...commonOptions, indexAxis: 'y' }}
+          options={{ ...commonOptions, indexAxis: 'y' } as ChartOptions<'bar'>}
         />
       </div>
     </div>
