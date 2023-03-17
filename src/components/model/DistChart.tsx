@@ -1,3 +1,5 @@
+import type { ChartOptions } from 'chart.js';
+import merge from 'deepmerge';
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
 import { useState } from 'react';
@@ -102,14 +104,15 @@ export const DistChart: FC<{ result: expectedValue }> = ({ result }) => {
               ],
             }}
             height={300}
-            options={{
-              ...commonOptions,
-              scales: {
-                yAxes: {
-                  min: 0,
+            options={
+              merge(commonOptions, {
+                scales: {
+                  y: {
+                    min: 0,
+                  },
                 },
-              },
-            }}
+              }) as ChartOptions<'line'>
+            }
           />
         </div>
       )}

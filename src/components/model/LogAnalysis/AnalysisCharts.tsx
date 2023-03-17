@@ -1,5 +1,6 @@
 import type { ChartOptions } from 'chart.js';
 import { BarController, BarElement, CategoryScale, Chart as ChartJS, LinearScale } from 'chart.js';
+import merge from 'deepmerge';
 import type { FC } from 'react';
 import { Bar, Chart } from 'react-chartjs-2';
 
@@ -28,12 +29,12 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
                 label: 'dice counting',
                 data: compiledDiceResultNumber,
                 backgroundColor: 'rgba(43, 108, 176, 0.3)',
-                yAxisID: 'y1',
+                yAxisID: 'y',
               },
             ],
           }}
           height={300}
-          options={{ ...commonOptions }}
+          options={commonOptions}
         />
       </div>
       <div>
@@ -49,7 +50,7 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
             ],
           }}
           height={300}
-          options={{ ...commonOptions, indexAxis: 'y' } as ChartOptions<'bar'>}
+          options={merge(commonOptions, { indexAxis: 'y' }) as ChartOptions<'bar'>}
         />
       </div>
     </div>
