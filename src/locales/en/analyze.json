@@ -1,12 +1,13 @@
 {
   "title": "Log Analysis",
-  "description": "Analyzes logs output from Cocoforia to extract and analyze rolls of the dice.",
+  "description": "Analyzes logs output from Cocoforia to extract and analyze rolls of the dice.  (Only CoC6th and CoC7th are supported.)",
 
   "upload": "Click to upload or drag and drop to upload",
 
   "log_preview_empty": "No logs existed for the corresponding character.",
 
   "result": {
+    "deviation_score": "Deviation score",
     "mean": "Mean",
     "variance": "Dispersion",
     "SD": "Standard deviation"
