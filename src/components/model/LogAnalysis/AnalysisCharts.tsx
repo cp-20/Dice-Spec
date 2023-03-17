@@ -17,8 +17,8 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
   const commonOptions = useChartOptions();
 
   return (
-    <div className="flex flex-col gap-4">
-      <div>
+    <div className="flex flex-col gap-4 lg:flex-row">
+      <div className="flex-1">
         <Chart
           type="bar"
           data={{
@@ -37,7 +37,7 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
           options={commonOptions}
         />
       </div>
-      <div>
+      <div className="flex-1">
         <Bar
           data={{
             labels: Array.from(compiledDiceResult.keys()),
