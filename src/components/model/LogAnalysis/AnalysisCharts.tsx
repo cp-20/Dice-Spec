@@ -65,7 +65,7 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
               ],
             }}
             height={300}
-            options={commonOptions}
+            options={commonOptions as ChartOptions<'bar'>}
             ref={resultNumberChartRef}
           />
         </div>
