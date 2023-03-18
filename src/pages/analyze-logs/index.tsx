@@ -9,7 +9,9 @@ import { LogAnalysis } from '@/components/model/LogAnalysis';
 import { H1 } from '@/components/ui/Heading';
 
 const AnalyzeLogs: NextPage = () => {
-  const [t] = useTranslation(['analyze', 'common']);
+  const [t, i18n] = useTranslation(['analyze', 'common']);
+
+  console.log(JSON.stringify(i18n.getDataByLanguage('ja'), null, '  '));
 
   return (
     <>
@@ -32,7 +34,7 @@ const AnalyzeLogs: NextPage = () => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  console.log(await serverSideTranslations(locale ?? 'ja', ['common', 'analyze']));
+  console.log(JSON.stringify(await serverSideTranslations(locale ?? 'ja', ['common', 'analyze']), null, '  '));
 
   return {
     props: {
