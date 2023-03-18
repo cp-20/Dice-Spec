@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { BsDice5 } from 'react-icons/bs';
-import { FaDiscord, FaFileExport, FaGithub, FaSearch, FaTwitter } from 'react-icons/fa';
+import { FaDiscord, FaGithub, FaSearch, FaTwitter } from 'react-icons/fa';
+import { IoAnalytics } from 'react-icons/io5';
 
 import { Descriptions } from '@/components/functional/Descriptions';
 import { Footer } from '@/components/layout/Footer';
@@ -47,8 +48,8 @@ const Home: NextPage = () => {
           <LandingCardLink
             title={t('functions.3.title')}
             content={t('functions.3.description')}
-            href="/ccfolia"
-            icon={<FaFileExport />}
+            href="/analyze-logs"
+            icon={<IoAnalytics />}
           />
         </LandingSection>
 

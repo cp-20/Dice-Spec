@@ -14,8 +14,8 @@
       "description": "You can roll any dice you like, and because it uses BCDice, it is as comfortable to use as a session tool such as CCFOLIA."
     },
     "3": {
-      "title": "CCFOLIA Export",
-      "description": "When you fill in each item of your character, this tool formats it into a format that can be output to CCFOLIA. Conversely, it can also read from the CCFOLIA output format, which is useful when you want to change a few values here and there!"
+      "title": "Log Analysis",
+      "description": "Analyze Cocoforia's logs to calculate dice averages, etc. If you are thinking \"I think I had bad luck with dice this session, but what really happened?\", try it out for yourself!"
     }
   },
 
