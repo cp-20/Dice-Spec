@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { IoAnalytics } from 'react-icons/io5';
@@ -31,13 +31,10 @@ const AnalyzeLogs: NextPage = () => {
   );
 };
 
-type contextType = {
-  locale: string;
-};
-export const getServerSideProps = async (context: contextType) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(context.locale, ['common', 'analyze'])),
+      ...(await serverSideTranslations(locale ?? 'ja', ['common', 'analyze'])),
     },
   };
 };
