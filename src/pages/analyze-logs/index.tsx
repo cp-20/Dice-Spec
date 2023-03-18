@@ -32,6 +32,8 @@ const AnalyzeLogs: NextPage = () => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  console.log(await serverSideTranslations(locale ?? 'ja', ['common', 'analyze']));
+
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ja', ['common', 'analyze'])),
