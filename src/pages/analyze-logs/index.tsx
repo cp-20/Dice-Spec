@@ -34,7 +34,7 @@ const AnalyzeLogs: NextPage = () => {
 type contextType = {
   locale: string;
 };
-export const getServerSideProps = async (context: contextType) => {
+export const getStaticProps = async (context: contextType) => {
   return {
     props: {
       ...(await serverSideTranslations(context.locale, ['common', 'analyze'])),
