@@ -5,7 +5,7 @@ import merge from 'deepmerge';
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
 import { useRef } from 'react';
-import { Bar, Chart } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import type { ChartJSOrUndefined } from 'react-chartjs-2/dist/types';
 import { FaTwitter } from 'react-icons/fa';
 
@@ -51,8 +51,7 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
       </div>
       <div className="flex max-w-full flex-col gap-4 lg:flex-row">
         <div className="min-w-0 flex-1">
-          <Chart
-            type="bar"
+          <Bar
             data={{
               labels: new Array(10).fill(null).map((_, i) => `${i * 10 + 1}-${i * 10 + 10}`),
               datasets: [
