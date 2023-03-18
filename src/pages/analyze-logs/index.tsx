@@ -43,4 +43,8 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   };
 };
 
+export const config = {
+  runtime: 'nodejs',
+};
+
 export default AnalyzeLogs;
