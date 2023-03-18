@@ -1,6 +1,19 @@
 import { useColorMode } from '@chakra-ui/react';
 import type { ChartOptions } from 'chart.js';
+import { Chart as ChartJS } from 'chart.js';
 import { useRouter } from 'next/router';
+
+ChartJS.register({
+  id: 'customCanvasBackgroundColor',
+  beforeDraw: (chart, args, options) => {
+    const { ctx } = chart;
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = (options.color as string) || '#99ffff';
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  },
+});
 
 export const useChartOptions = (): ChartOptions => {
   const { locale } = useRouter();
@@ -17,6 +30,12 @@ export const useChartOptions = (): ChartOptions => {
       },
       tooltip: {
         enabled: false,
+      },
+      // for custom plugin
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      customCanvasBackgroundColor: {
+        color: color('white', '#1a202c'),
       },
     },
     scales: {
