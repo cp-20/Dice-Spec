@@ -7,7 +7,7 @@ export const Descriptions: FC<{ title: string; description: string }> = ({ title
 
   const ogpUrl =
     typeof query.ogp === 'string'
-      ? `https://dicespec.vercel.app/api/og?image=${query.ogp}`
+      ? `https://dicespec.vercel.app/api/og?image=${encodeURIComponent(query.ogp)}`
       : 'https://dicespec.vercel.app/ogp.png';
 
   return (
