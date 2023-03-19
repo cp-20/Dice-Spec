@@ -50,6 +50,33 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
         </Button>
       </div>
       <div className="flex max-w-full flex-col gap-4 lg:flex-row">
+        <div className="fixed -top-full -left-full">
+          <Bar
+            data={{
+              labels: new Array(10).fill(null).map((_, i) => `${i * 10 + 1}-${i * 10 + 10}`),
+              datasets: [
+                {
+                  type: 'bar',
+                  label: 'dice counting',
+                  data: compiledDiceResultNumber,
+                  backgroundColor: 'rgba(43, 108, 176, 0.3)',
+                  yAxisID: 'y',
+                },
+              ],
+            }}
+            height={630}
+            width={1200}
+            options={
+              merge(commonOptions, {
+                scales: { x: { ticks: { font: { size: 30 } } }, y: { ticks: { font: { size: 30 } } } },
+                layout: {
+                  padding: 32,
+                },
+              }) as ChartOptions<'bar'>
+            }
+            ref={resultNumberChartRef}
+          />
+        </div>
         <div className="min-w-0 flex-1">
           <Bar
             data={{
@@ -66,7 +93,6 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
             }}
             height={300}
             options={commonOptions as ChartOptions<'bar'>}
-            ref={resultNumberChartRef}
           />
         </div>
         <div className="min-w-0 flex-1">
