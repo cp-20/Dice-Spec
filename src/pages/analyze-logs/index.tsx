@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { IoAnalytics } from 'react-icons/io5';
@@ -9,9 +9,7 @@ import { LogAnalysis } from '@/components/model/LogAnalysis';
 import { H1 } from '@/components/ui/Heading';
 
 const AnalyzeLogs: NextPage = () => {
-  const [t, i18n] = useTranslation(['analyze', 'common']);
-
-  console.log(JSON.stringify(i18n.getDataByLanguage('ja'), null, '  '));
+  const [t] = useTranslation(['analyze', 'common']);
 
   return (
     <>
@@ -33,9 +31,7 @@ const AnalyzeLogs: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  console.log(JSON.stringify(await serverSideTranslations(locale ?? 'ja', ['common', 'analyze']), null, '  '));
-
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'ja', ['common', 'analyze'])),
