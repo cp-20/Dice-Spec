@@ -36,7 +36,7 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
     }
 
     uploadImage(base64ImageUrl).then((imageUrl) => {
-      const url = encodeURIComponent(`https://dicespec.vercel.app/analyze-logs?ogp=${encodeURIComponent(imageUrl)}`);
+      const url = encodeURIComponent(`https://dicespec.vercel.app/analyze-logs/og?ogp=${encodeURIComponent(imageUrl)}`);
       const href = `https://twitter.com/intent/tweet?url=${url}&text=▼あなたのダイス結果を分析した結果▼&hashtags=ダイススペック`;
       window.open(href, '_blank');
     });
