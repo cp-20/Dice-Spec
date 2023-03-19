@@ -5,7 +5,10 @@ import type { FC } from 'react';
 export const Descriptions: FC<{ title: string; description: string }> = ({ title, description }) => {
   const { locale, pathname, query } = useRouter();
 
-  const ogpUrl = typeof query.ogp === 'string' ? query.ogp : 'https://dicespec.vercel.app/ogp.png';
+  const ogpUrl =
+    typeof query.ogp === 'string'
+      ? `https://dicespec.vercel.app/api/og?image${query.ogp}`
+      : 'https://dicespec.vercel.app/ogp.png';
 
   return (
     <>
