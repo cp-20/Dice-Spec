@@ -78,7 +78,11 @@ export const LogAnalysisPreview: FC<logAnalysisPreviewProps> = ({ logs }) => {
           </Stat>
         </div>
 
-        <AnalysisCharts compiledDiceResultNumber={compiledDiceResultNumber} compiledDiceResult={compiledDiceResult} />
+        <AnalysisCharts
+          mean={mean}
+          compiledDiceResultNumber={compiledDiceResultNumber}
+          compiledDiceResult={compiledDiceResult}
+        />
       </div>
     </>
   );

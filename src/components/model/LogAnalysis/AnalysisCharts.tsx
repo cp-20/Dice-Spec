@@ -15,11 +15,12 @@ import { useFirebase } from '@/features/firebase';
 ChartJS.register(BarController, CategoryScale, LinearScale, BarElement);
 
 export type analysisChartsProps = {
+  mean: string;
   compiledDiceResultNumber: number[];
   compiledDiceResult: Map<string, number>;
 };
 
-export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumber, compiledDiceResult }) => {
+export const AnalysisCharts: FC<analysisChartsProps> = ({ mean, compiledDiceResultNumber, compiledDiceResult }) => {
   const [t] = useTranslation('analyze');
   const resultNumberChartRef = useRef<ChartJSOrUndefined<'bar', number[], string>>(null);
   const commonOptions = useChartOptions();
@@ -30,14 +31,14 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ compiledDiceResultNumb
     const base64ImageUrl = resultNumberChartRef.current?.toBase64Image('image/png');
     if (base64ImageUrl === undefined) {
       const url = encodeURIComponent(`https://dicespec.vercel.app/analyze-logs`);
-      const href = `https://twitter.com/intent/tweet?url=${url}&text=▼あなたのダイス結果を分析した結果▼&hashtags=ダイススペック`;
+      const href = `https://twitter.com/intent/tweet?url=${url}&text=▼あなたのダイス結果を分析した結果▼\n平均: ${mean}&hashtags=ダイススペック`;
       window.open(href, '_blank');
       return;
     }
 
     uploadImage(base64ImageUrl).then((imageUrl) => {
       const url = encodeURIComponent(`https://dicespec.vercel.app/analyze-logs/og?ogp=${encodeURIComponent(imageUrl)}`);
-      const href = `https://twitter.com/intent/tweet?url=${url}&text=▼あなたのダイス結果を分析した結果▼&hashtags=ダイススペック`;
+      const href = `https://twitter.com/intent/tweet?url=${url}&text=▼あなたのダイス結果を分析した結果▼\n平均: ${mean}&hashtags=ダイススペック`;
       window.open(href, '_blank');
     });
   };
