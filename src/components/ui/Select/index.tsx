@@ -58,7 +58,7 @@ export const Select: FC<{
 
   return (
     <>
-      <div>
+      <div className="relative">
         <InputGroup>
           <Input
             aria-haspopup="listbox"
