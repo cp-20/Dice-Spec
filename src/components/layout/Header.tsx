@@ -10,8 +10,14 @@ import { Navigation } from '@/components/layout/Navigation';
 import { LanguageSelect } from '@/components/model/LanguageSelect';
 import { StyledLink } from '@/components/ui/StyledLink';
 import { DICESPEC_VERSION } from '@/const/version';
+import { cx } from '@/features/utils/cx';
 
-export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
+export type headerProps = {
+  hideMenuButton?: boolean;
+  showLanguageSelect?: boolean;
+};
+
+export const Header: FC<headerProps> = ({ hideMenuButton, showLanguageSelect }) => {
   const [t] = useTranslation('common');
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,17 +32,15 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
     <>
       <Box shadow="sm" _dark={{ shadow: 'dark-lg' }}>
         <header className="flex py-2 px-4">
-          <div className="flex flex-col items-center justify-center sm:flex-row sm:space-x-2">
+          <div className="flex flex-col items-center justify-center xs:flex-row xs:space-x-2">
             <StyledLink href="/" className="font-ZenKaku text-lg transition-all hover:opacity-60 dark:hover:opacity-70">
               {t('title')}
             </StyledLink>
             <p>v{DICESPEC_VERSION}</p>
           </div>
 
-          <div className="ml-auto flex flex-col-reverse sm:flex-row sm:items-center sm:space-x-4">
-            <div className="mt-2 sm:mt-0">
-              {/* change languages */}
-
+          <div className="ml-auto flex flex-col-reverse justify-center sm:flex-row sm:items-center sm:space-x-4">
+            <div className={cx('mt-2  sm:mt-0 ', showLanguageSelect || 'hidden', ' sm:block')}>
               <LanguageSelect />
             </div>
 
@@ -72,8 +76,8 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
               </Tooltip>
 
               {/* navigation menu */}
-              {isDesktop || (
-                <>
+              {hideMenuButton || (
+                <div className="sm:hidden">
                   <Tooltip label={t('header.navigation')}>
                     <IconButton
                       size="sm"
@@ -94,7 +98,7 @@ export const Header: FC<{ isDesktop: boolean }> = ({ isDesktop }) => {
                       </DrawerBody>
                     </DrawerContent>
                   </Drawer>
-                </>
+                </div>
               )}
             </div>
           </div>

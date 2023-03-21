@@ -22,7 +22,7 @@ const Home: NextPage = () => {
     <>
       <Descriptions title={t('common:title')} description={t('description')} />
 
-      <Header isDesktop={true} />
+      <Header hideMenuButton showLanguageSelect />
 
       <div className="min-h-[calc(100vh-5.5rem)] px-4">
         <h1 className="py-8 text-center font-ZenKaku text-4xl sm:text-5xl md:text-6xl">{t('common:title')}</h1>
