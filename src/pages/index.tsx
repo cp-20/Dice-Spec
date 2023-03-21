@@ -66,7 +66,7 @@ const Home: NextPage = () => {
         </LandingSection>
 
         <LandingSection label={t('credit.title')}>
-          <StyledLink href="https://www.flaticon.com/free-icons/dice" icon="none" className="underline">
+          <StyledLink href="https://www.flaticon.com/free-icons/dice" icon="none" className="justify-center underline">
             Dice icons created by Tanah Basah - Flaticon
           </StyledLink>
         </LandingSection>
