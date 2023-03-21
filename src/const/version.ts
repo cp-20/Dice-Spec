@@ -1,1 +1,1 @@
-export const DICESPEC_VERSION = '1.6.3';
+export const DICESPEC_VERSION = '1.6.4';
