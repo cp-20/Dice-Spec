@@ -85,7 +85,7 @@ const Home: NextPage = () => {
             const rollResult: diceResult = {
               date: new Date(),
               system: config.system.name,
-              success: result.result.success || result.result.critiacl,
+              success: result.result.success || result.result.critical,
               failure: result.result.failure || result.result.fumble,
               text: result.result.text,
             };

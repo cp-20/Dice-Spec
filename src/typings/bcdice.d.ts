@@ -50,7 +50,7 @@ export namespace BCDice {
     secret: boolean;
     success: boolean;
     failure: boolean;
-    critiacl: boolean;
+    critical: boolean;
     fumble: boolean;
     rands: {
       kinds: 'nomal' | 'tens_d10' | 'd9';
