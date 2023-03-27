@@ -84,7 +84,7 @@ class Document extends NextDocument<WithNonceProp> {
           <link rel="icon" type="image/png" sizes="16x16" href="/favicons/icon-16x16.png" />
           <link rel="icon" type="image/png" sizes="24x24" href="/favicons/icon-24x24.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicons/icon-32x32.png" />
-          <link rel="manifest" href="/favicons/manifest.json" />
+          <link rel="manifest" href="/favicons/manifest.webmanifest" />
 
           {/* Google Adsense */}
           {adsenseClientId && <GoogleAdsense clientId={adsenseClientId} />}
