@@ -18,14 +18,11 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'next-i18next';
 import type { FC, ReactNode } from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useContext } from 'react';
 import { FaCog, FaUndoAlt } from 'react-icons/fa';
 
+import { useDiceConfig } from '@/components/features/dice/diceConfigAtom';
 import { FormLabel } from '@/components/ui/FormLabel';
-import { configContext, initialConfig } from '@/pages/dice';
-import type { diceConfig } from '@/typings/diceConfig';
+import { initialConfig } from '@/pages/dice';
 
 const FormSwitch: FC<{ children: ReactNode; onChange: (input: boolean) => void; checked: boolean }> = ({
   children,
@@ -57,14 +54,9 @@ const FormSlider: FC<{
   </FormControl>
 );
 
-export const AdvancedSettings: FC<{ config: diceConfig }> = ({ config }) => {
+export const AdvancedSettings: FC = () => {
   const [t] = useTranslation('dice');
-  const { setConfig } = useContext(configContext);
-  const [volume, setVolume] = useState(config.volume);
-
-  useEffect(() => {
-    setVolume(config.volume);
-  }, [config.volume]);
+  const [config, setConfig] = useDiceConfig();
 
   return (
     <>
@@ -92,9 +84,9 @@ export const AdvancedSettings: FC<{ config: diceConfig }> = ({ config }) => {
             </div>
             <div className="space-y-6 px-4 py-4">
               <FormSlider
-                onChange={(input) => setVolume(input)}
+                onChange={(input) => setConfig({ ...config, volume: input })}
                 onChangeEnd={(input) => setConfig && setConfig({ ...config, volume: input })}
-                value={volume}
+                value={config.volume}
               >
                 {t('form.settings.volume')}
               </FormSlider>

@@ -3,29 +3,23 @@ import type { FC } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 
+import { useDiceResult } from '@/components/features/dice/diceResultAtom';
 import { MultiLineBody } from '@/components/functional/MuliLineBody';
 import { cx } from '@/features/utils/cx';
 import { zeroPadding } from '@/features/utils/zeroPadding';
 
-export type diceResult = {
-  system: string;
-  date: Date;
-  success: boolean;
-  failure: boolean;
-  text: string;
-};
+const formatTime = (date: Date) => `${zeroPadding(date.getHours(), 2)}:${zeroPadding(date.getMinutes(), 2)}`;
 
-const getTime = (date: Date) => `${zeroPadding(date.getHours(), 2)}:${zeroPadding(date.getMinutes(), 2)}`;
-
-export const DiceResult: FC<{ result: diceResult[] }> = ({ result }) => {
+export const DiceResult: FC = () => {
   const [t] = useTranslation('dice');
+  const [result] = useDiceResult();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-  });
+  }, [result.length]);
 
   return (
     <>
@@ -46,7 +40,7 @@ export const DiceResult: FC<{ result: diceResult[] }> = ({ result }) => {
             >
               <MultiLineBody body={item.text} />
             </p>
-            <p className="text-gray-500 dark:text-gray-400">{getTime(item.date)}</p>
+            <p className="text-gray-500 dark:text-gray-400">{formatTime(item.date)}</p>
           </div>
         ))}
       </div>

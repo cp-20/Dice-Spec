@@ -1,8 +1,9 @@
 import useSound from 'use-sound';
 
-import type { diceConfig } from '@/typings/diceConfig';
+import { useDiceConfig } from '@/components/features/dice/diceConfigAtom';
 
-export const useDiceSound = (config: diceConfig) => {
+export const useDiceSound = () => {
+  const [config] = useDiceConfig();
   const [play] = useSound('/audio/dice.wav', { volume: config.volume / 100 });
 
   return {

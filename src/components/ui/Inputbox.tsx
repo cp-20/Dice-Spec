@@ -3,8 +3,8 @@ import type { ChangeEventHandler, FC, FormEventHandler, ReactNode } from 'react'
 
 export type InputboxProps = {
   children?: ReactNode;
-  onSubmit: FormEventHandler;
-  onChange: ChangeEventHandler;
+  onSubmit: FormEventHandler<HTMLFormElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   isInvalid?: boolean;
   inputVal: string;
   placeholder?: string;

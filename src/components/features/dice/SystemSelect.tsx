@@ -4,17 +4,16 @@ import type { FC } from 'react';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
-import { useContext } from 'react';
 
+import { useDiceConfig } from '@/components/features/dice/diceConfigAtom';
 import { Select } from '@/components/ui/Select';
-import { configContext } from '@/pages/dice';
 import type { BCDice } from '@/typings/bcdice';
-import type { diceConfig } from '@/typings/diceConfig';
 
-export const SystemSelect: FC<{ config: diceConfig }> = ({ config }) => {
+export const SystemSelect: FC = () => {
   const [t] = useTranslation('dice');
+  const [config, setConfig] = useDiceConfig();
+
   const toast = useToast();
-  const { setConfig } = useContext(configContext);
   const [data, setData] = useState<BCDice.gameSystemResponse | null>(null);
   const active = useRef(config.system.id);
 
