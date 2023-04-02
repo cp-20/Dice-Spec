@@ -17,14 +17,6 @@
     },
     "error": "形式が正しくありません"
   },
-  "result": {
-    "title": "結果",
-    "mean": "平均",
-    "SD": "標準偏差",
-    "variance": "分散",
-    "range": "範囲",
-    "CI": "信頼区間(95%)"
-  },
   "errors": {
     "notFound": "BCDice APIサーバーが見つかりません。BCDice APIサーバーのURLを設定してください。",
     "other": "エラーが発生しました。"
