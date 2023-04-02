@@ -7,6 +7,7 @@ import { AdvancedSettings } from '@/components/features/dice/AdvancedSettings';
 import { DiceResult } from '@/components/features/dice/DiceResult';
 import { DiceRollHelp } from '@/components/features/dice/DiceRollHelp';
 import { DiceRollInput } from '@/components/features/dice/DiceRollInput';
+import { DiceRollQuickInput } from '@/components/features/dice/DiceRollQuickInput';
 import { SystemSelect } from '@/components/features/dice/SystemSelect';
 import { Descriptions } from '@/components/functional/Descriptions';
 import { IndexLayout } from '@/components/layout/IndexLayout';
@@ -34,6 +35,9 @@ export const DiceRoll: FC = () => {
           </FormControl>
 
           <DiceResult />
+
+          <DiceRollQuickInput />
+          <div className="h-4"></div>
           <DiceRollInput />
 
           <DiceRollHelp />

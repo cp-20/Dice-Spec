@@ -6,6 +6,7 @@
     "placeholder": "Command",
     "submit": "ROLL",
     "system": "Game system",
+    "toggleFavorite": "switching favorites",
     "settings": {
       "title": "Advanced Settings",
       "help": "Show Help",

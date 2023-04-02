@@ -6,6 +6,7 @@
     "placeholder": "コマンドを入力してください",
     "submit": "ロール",
     "system": "ゲームシステム",
+    "toggleFavorite": "お気に入り切り替え",
     "settings": {
       "title": "高度な設定",
       "help": "ヘルプを表示する",
