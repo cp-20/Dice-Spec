@@ -51,7 +51,7 @@ export const useDiceRoll = () => {
     }
   };
 
-  const pushResult = (result: diceRollResult) => {
+  const pushResult = (input: string, result: diceRollResult) => {
     play();
     const rollResult: diceResult = {
       date: new Date(),
@@ -59,6 +59,7 @@ export const useDiceRoll = () => {
       success: result.result.success || result.result.critical,
       failure: result.result.failure || result.result.fumble,
       text: result.result.text,
+      input,
     };
     setDiceResult([...diceResult, rollResult]);
   };

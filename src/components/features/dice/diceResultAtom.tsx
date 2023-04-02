@@ -6,6 +6,7 @@ export type diceResult = {
   success: boolean;
   failure: boolean;
   text: string;
+  input: string;
 };
 
 const diceResultAtom = atom<diceResult[]>([]);

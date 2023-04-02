@@ -24,7 +24,7 @@ export const DiceRollInput: FC = () => {
       const result = await diceRoll(inputVal);
       if (result.success) {
         setInputVal('');
-        pushResult(result);
+        pushResult(inputVal, result);
       } else {
         setIsInvalid(true);
       }
