@@ -20,9 +20,8 @@ import { useTranslation } from 'next-i18next';
 import type { FC, ReactNode } from 'react';
 import { FaCog, FaUndoAlt } from 'react-icons/fa';
 
-import { useDiceConfig } from '@/components/features/dice/diceConfigAtom';
+import { initialConfig, useDiceConfig } from '@/components/features/dice/diceConfigAtom';
 import { FormLabel } from '@/components/ui/FormLabel';
-import { initialConfig } from '@/pages/dice';
 
 const FormSwitch: FC<{ children: ReactNode; onChange: (input: boolean) => void; checked: boolean }> = ({
   children,

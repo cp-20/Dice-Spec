@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import type { diceConfig, jsonDiceConfig } from '@/typings/diceConfig';
 
-const initialConfig: diceConfig = {
+export const initialConfig: diceConfig = {
   apiServer: 'https://bcdice.onlinesession.app',
   system: {
     id: 'DiceBot',
