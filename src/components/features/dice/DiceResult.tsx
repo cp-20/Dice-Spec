@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import type { FC } from 'react';
+import { Fragment } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 
@@ -29,19 +30,36 @@ export const DiceResult: FC = () => {
       >
         <p className="text-md font-bold text-gray-600 dark:text-gray-300">{t('output')}</p>
         {result.map((item, index) => (
-          <div key={index} className="flex space-x-2">
-            <p className="text-gray-500 dark:text-gray-400">{item.system}</p>
-            <p
-              className={cx(
-                'flex-1',
-                item.success && 'text-blue-700 dark:text-blue-500',
-                item.failure && 'text-red-700 dark:text-red-500'
-              )}
-            >
-              <MultiLineBody body={item.text} />
-            </p>
-            <p className="text-gray-500 dark:text-gray-400">{formatTime(item.date)}</p>
-          </div>
+          <Fragment key={index}>
+            <div className="hidden space-x-2 lg:flex">
+              <p className="text-gray-500 dark:text-gray-400">{item.system}</p>
+              <p
+                className={cx(
+                  'flex-1',
+                  item.success && 'text-blue-700 dark:text-blue-500',
+                  item.failure && 'text-red-700 dark:text-red-500'
+                )}
+              >
+                <MultiLineBody body={item.text} />
+              </p>
+              <p className="text-gray-500 dark:text-gray-400">{formatTime(item.date)}</p>
+            </div>
+            <div className="flex flex-col lg:hidden">
+              <div className="flex">
+                <p className="text-gray-500 dark:text-gray-400">{item.system}</p>
+                <p className="ml-auto text-gray-500 dark:text-gray-400">{formatTime(item.date)}</p>
+              </div>
+              <p
+                className={cx(
+                  'flex-1',
+                  item.success && 'text-blue-700 dark:text-blue-500',
+                  item.failure && 'text-red-700 dark:text-red-500'
+                )}
+              >
+                <MultiLineBody body={item.text} />
+              </p>
+            </div>
+          </Fragment>
         ))}
       </div>
     </>
