@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
-    "@swc-jotai/react-refresh": "^0.0.7",
+    "@swc-jotai/react-refresh": "^0.0.8",
     "@testing-library/dom": "^8.20.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",

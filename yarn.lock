@@ -2961,10 +2961,10 @@
     magic-string "^0.25.0"
     string.prototype.matchall "^4.0.6"
 
-"@swc-jotai/react-refresh@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@swc-jotai/react-refresh/-/react-refresh-0.0.7.tgz#c73b81c84bd049ffe1cfb2e856477f9d43cc2fb3"
-  integrity sha512-8/DKZzqsvG+zhmq8BxB6Kx5uu89GkfRSPlv//3SPoNgBJW25oPyCKLD5ADkuyaBLxTzpKKgpkKC1rjSbOWpRCg==
+"@swc-jotai/react-refresh@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@swc-jotai/react-refresh/-/react-refresh-0.0.8.tgz#ff337d1cb50a2964a751fa4e580bc90b367fd5c5"
+  integrity sha512-fHMenTg1jeETEShCh/wlDxRpR6DZAXIuDuFIB9fZ4yf+JfrWzQkPIvPN3E0efSpOham9ucRspS0uI82PxBbCjg==
 
 "@swc/helpers@0.4.11":
   version "0.4.11"
