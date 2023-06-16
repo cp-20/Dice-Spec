@@ -2729,10 +2729,10 @@
     hey-listen "^1.0.8"
     tslib "^2.3.1"
 
-"@next/bundle-analyzer@^13.3.4":
-  version "13.3.4"
-  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-13.3.4.tgz#1d22a2651edb285a2be52634955bc6594aa41995"
-  integrity sha512-MyL4AhmyPCuIuH5JzV4SxcOPb2UxpgClIGEaYXiC79HTiNaQ8xDpzpDi46M93GfKOlWH9ck4OFyn/1yWO2d8aQ==
+"@next/bundle-analyzer@^13.4.6":
+  version "13.4.6"
+  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-13.4.6.tgz#e32d2b3236e984829059791b773bb239970226d6"
+  integrity sha512-HqqQxZ4y71az1TYCKILmJXjjY/645/21q/EUVFCGIzKkST+DrvgcJcBpWwlnI0wAuMRbdxvN1FMi7jSlSUIByw==
   dependencies:
     webpack-bundle-analyzer "4.7.0"
 
