@@ -6086,10 +6086,10 @@ jiti@^1.18.2:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.18.2.tgz#80c3ef3d486ebf2450d9335122b32d121f2a83cd"
   integrity sha512-QAdOptna2NYiSSpv0O/BwoHBSmz4YhpzJHyi+fnMRTXFjp7B8i/YG5Z8IfusxB1ufjcD2Sre1F3R+nX3fvy7gg==
 
-jotai@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.0.4.tgz#084accf703e3da768e0dbbeeec740545adca67ca"
-  integrity sha512-XkR1Jtm4a2iKV/7fdB3rNHjJz8FkkDMVczqiAok7lt8W4F69l/ZQkPGWSEV+hJOJXRn27k6XYKOoKEQIwBuAMA==
+jotai@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.3.0.tgz#4bafc98dcae1194ab9ae7c4bf1325a712d73d086"
+  integrity sha512-EZlZvmqmzl+Wdc6j6gRFUwZW1FME8pb4S8IogDFESvIM+062mmXKQdZUdxXgb8+Kdjz75QTXJT/zX2Gw1Jk0BQ==
 
 js-sdsl@^4.1.4:
   version "4.1.4"
