@@ -28,7 +28,12 @@ const Home: NextPage = () => {
             <span>{t('title')}</span>
           </H1>
 
-          <p className="mb-8">{t('description')}</p>
+          <p className="mb-2">{t('description')}</p>
+          <p className="mb-8">
+            さらに<code className="mx-1 bg-slate-100 px-1">1D100&lt;=10</code>や
+            <code className="mx-1 bg-slate-100 px-1">2D6&gt;=10</code>
+            と入力することで、その確率も知ることができます。
+          </p>
 
           <Inputbox
             onSubmit={onSubmit}
