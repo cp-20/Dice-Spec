@@ -30,7 +30,7 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ mean, compiledDiceResu
   const handleClickShareButton = () => {
     const base64ImageUrl = resultNumberChartRef.current?.toBase64Image('image/png');
     if (base64ImageUrl === undefined) {
-      const url = encodeURIComponent(`https://dicespec.vercel.app/analyze-logs`);
+      const url = encodeURIComponent(`https://v1.dicespec.vercel.app/analyze-logs`);
       const text = encodeURIComponent(`▼あなたのダイス結果を分析した結果▼\n平均: ${mean}\n#ダイススペック\n`);
       const href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
       window.open(href, '_blank');
@@ -38,7 +38,9 @@ export const AnalysisCharts: FC<analysisChartsProps> = ({ mean, compiledDiceResu
     }
 
     uploadImage(base64ImageUrl).then((imageUrl) => {
-      const url = encodeURIComponent(`https://dicespec.vercel.app/analyze-logs/og?ogp=${encodeURIComponent(imageUrl)}`);
+      const url = encodeURIComponent(
+        `https://v1.dicespec.vercel.app/analyze-logs/og?ogp=${encodeURIComponent(imageUrl)}`
+      );
       const text = encodeURIComponent(`▼あなたのダイス結果を分析した結果▼\n平均: ${mean}\n#ダイススペック\n`);
       const href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
       window.open(href, '_blank');

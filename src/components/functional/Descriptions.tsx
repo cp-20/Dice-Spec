@@ -7,8 +7,8 @@ export const Descriptions: FC<{ title: string; description: string }> = ({ title
 
   const ogpUrl =
     typeof query.ogp === 'string'
-      ? `https://dicespec.vercel.app/api/og?image=${encodeURIComponent(query.ogp)}`
-      : 'https://dicespec.vercel.app/ogp.png';
+      ? `https://v1.dicespec.vercel.app/api/og?image=${encodeURIComponent(query.ogp)}`
+      : 'https://v1.dicespec.vercel.app/ogp.png';
 
   return (
     <>
@@ -22,7 +22,7 @@ export const Descriptions: FC<{ title: string; description: string }> = ({ title
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://dicespec.vercel.app${!locale || locale === 'ja' ? '' : '/' + locale}${pathname}`}
+          content={`https://v1.dicespec.vercel.app${!locale || locale === 'ja' ? '' : '/' + locale}${pathname}`}
         />
         <meta property="og:site_name" content={title} />
         <meta property="og:locale" content={locale ?? 'ja'} />
