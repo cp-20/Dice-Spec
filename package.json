@@ -29,7 +29,7 @@
     "@vercel/analytics": "^1.0.1",
     "chart.js": "^3.9.1",
     "deepmerge": "^4.3.1",
-    "firebase": "^9.20.0",
+    "firebase": "^10.5.0",
     "framer-motion": "^9",
     "jotai": "^2.0.4",
     "nanoid": "^4.0.2",
