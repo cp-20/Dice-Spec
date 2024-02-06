@@ -1,5 +1,8 @@
 # DiceSpec
 
+> [!CAUTION]
+> This project has been **archived and not maintained** since [DiceSpec v2](https://github.com/cp-20/dice-spec-v2) has been released.
+
 DiceSpec is a service that collects little tools for TRPG.
 
 ![DiceSpec Image](/readme/image.png)
